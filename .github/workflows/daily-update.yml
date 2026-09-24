@@ -2,7 +2,7 @@ name: Daily Stock Screener Update
 
 on:
   schedule:
-    # Run daily at 5:00 AM UTC (1:00 AM ET / 9:00 AM HKT)
+    # Weekdays 05:00 UTC = 01:00 ET / 13:00 HKT (after both markets close)
     - cron: '0 5 * * 1-5'
   workflow_dispatch:
 
@@ -10,6 +10,10 @@ permissions:
   contents: write
   pages: write
   id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
 
 jobs:
   build:
@@ -32,12 +36,23 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add app/data.js
-          git diff --staged --quiet || git commit -m "Daily update: RSI divergence signals 2026-09-24"
-          git push
+          git add app/data.js pipeline/universe.json
+          if ! git diff --staged --quiet; then
+            TODAY=$(date -u +'%Y-%m-%d')
+            git commit -m "Daily update: RSI divergence signals ${TODAY}"
+            git push
+          else
+            echo "No data changes to commit."
+          fi
+
+      - name: Setup Pages
+        uses: actions/configure-pages@v5
+
+      - name: Upload Pages artifact
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./app
 
       - name: Deploy to GitHub Pages
-        uses: peaceiris/actions-gh-pages@v4
-        with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./app
+        id: deployment
+        uses: actions/deploy-pages@v4

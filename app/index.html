@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>QuantScreener 量化选股 · 美股底背离筛选</title>
+<title>QuantScreener · RSI底背离扫描（美股罗素1000 / 港股100亿+）</title>
 <script src="vendor/echarts.min.js"></script>
 <style>
 :root{
@@ -355,6 +355,9 @@ document.getElementById('btnApply').onclick = render;
 document.getElementById('btnReset').onclick = ()=>{
   rsiLo.value=0; rsiHi.value=100; syncRng();
   document.getElementById('fWk').value='all'; F.wk='all';
+  document.getElementById('fMarket').value='all'; F.market='all';
+  document.querySelectorAll('.tab[data-mkt]').forEach(x=>x.classList.toggle('on', x.dataset.mkt==='all'));
+  updateMktName(); refreshCards();
   document.getElementById('q').value=''; F.q='';
   render();
 };
@@ -390,9 +393,9 @@ function render(){
   });
   document.getElementById('cnt').textContent =
     `${AGE_FULL[curAge]} · ${rows.length} 只 · 按${SORT_NAME[sortK]}${sortDir>0?'升序':'降序'}`;
-  const totAll = D.signals.length;
+  const totAll = D.signals.filter(s=>F.market==='all'||s.market===F.market).length;
   document.getElementById('sharePct').textContent =
-    Math.round(rows.length/totAll*100)+'%';
+    totAll ? Math.round(rows.length/totAll*100)+'%' : '0%';
   const tb = document.querySelector('#tbl tbody');
   tb.innerHTML = rows.map(s=>`
     <tr data-t="${s.ticker}" class="${s.ticker===selTicker?'sel':''}">

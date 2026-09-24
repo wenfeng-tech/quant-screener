@@ -2,7 +2,6 @@ __pycache__/
 *.pyc
 .DS_Store
 pipeline/part*.py
-pipeline/universe.json
 *.xlsx
 *.pdf
 hk_px_*.csv
