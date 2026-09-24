@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>QuantScreener 量化选股 · 美股底背离筛选</title>
+<script src="vendor/echarts.min.js"></script>
+<style>
+:root{
+  --bg:#0a101d; --panel:#101a2e; --panel2:#152239; --line:#1e2c4a; --line2:#2a3c66;
+  --txt:#dfe7f5; --sub:#7f92b6; --faint:#54648c;
+  --up:#35c47d; --down:#ef5350; --blue:#3d9df0; --cyan:#22c3e6;
+  --gold:#d8a94e; --purple:#8f6fe8;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:var(--bg);color:var(--txt);font-family:"Noto Sans CJK SC","PingFang SC","Microsoft YaHei",sans-serif;
+  font-size:14px;display:flex;flex-direction:column;height:100vh;overflow:hidden}
+*{scrollbar-width:thin;scrollbar-color:rgba(90,120,180,.35) transparent}
+::-webkit-scrollbar{width:5px;height:5px}
+::-webkit-scrollbar-thumb{background:rgba(90,120,180,.32);border-radius:3px}
+::-webkit-scrollbar-thumb:hover{background:rgba(90,120,180,.6)}
+::-webkit-scrollbar-track{background:transparent}
+button{font-family:inherit;cursor:pointer}
+
+/* ===== top bar ===== */
+.topbar{height:56px;flex:none;display:flex;align-items:center;gap:26px;padding:0 20px;
+  background:linear-gradient(180deg,#0e1830,#0b1322);border-bottom:1px solid var(--line)}
+.logo{font-size:18px;font-weight:800;letter-spacing:.5px;white-space:nowrap}
+.logo b{color:var(--blue)}
+.tabs{display:flex;gap:4px;height:100%}
+.tab{padding:0 18px;display:flex;align-items:center;font-size:14.5px;color:var(--sub);
+  cursor:pointer;border-bottom:2.5px solid transparent;user-select:none}
+.tab:hover{color:var(--txt)}
+.tab.on{color:var(--txt);border-bottom-color:var(--blue);font-weight:600}
+.top-right{margin-left:auto;display:flex;align-items:center;gap:16px;color:var(--sub);font-size:12.5px}
+.pill{border:1px solid var(--line2);border-radius:20px;padding:5px 14px;display:flex;align-items:center;gap:6px;font-size:12px;color:var(--sub)}
+.pill .dot{width:7px;height:7px;border-radius:50%;background:var(--up);box-shadow:0 0 6px var(--up)}
+.pill.close .dot{background:var(--gold);box-shadow:0 0 6px var(--gold)}
+.ico{width:34px;height:34px;border-radius:50%;border:1px solid var(--line2);display:flex;align-items:center;
+  justify-content:center;font-size:15px;cursor:pointer;position:relative}
+.ico .bdg{position:absolute;top:-3px;right:-3px;background:var(--down);color:#fff;font-size:9px;
+  min-width:15px;height:15px;border-radius:8px;display:flex;align-items:center;justify-content:center}
+.avatar{width:34px;height:34px;border-radius:50%;background:linear-gradient(135deg,#3d9df0,#8f6fe8);
+  display:flex;align-items:center;justify-content:center;font-size:13px;font-weight:700}
+
+/* ===== body ===== */
+.body{flex:1;display:flex;min-height:0}
+.side{width:62px;flex:none;border-right:1px solid var(--line);display:flex;flex-direction:column;
+  align-items:center;padding-top:14px;gap:6px;background:#0b1322}
+.si{width:46px;height:52px;border-radius:9px;display:flex;flex-direction:column;align-items:center;
+  justify-content:center;gap:3px;color:var(--faint);font-size:10.5px;cursor:pointer}
+.si .i{font-size:17px;display:flex}
+.si .i svg{width:21px;height:21px;stroke:currentColor;fill:none;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.si:hover{color:var(--sub);background:var(--panel)}
+.si.on{color:#fff;background:linear-gradient(135deg,#2f7fd6,#3d9df0);box-shadow:0 4px 12px rgba(61,157,240,.35)}
+
+.content{flex:1;overflow:hidden;padding:13px 20px 10px;min-width:0;min-height:0;display:flex;flex-direction:column;gap:11px}
+.sec-title{display:flex;align-items:center;gap:9px;font-size:14.5px;color:var(--txt);flex:none}
+.sec-title::before{content:"";width:4px;height:16px;background:var(--blue);border-radius:2px;box-shadow:0 0 8px var(--blue)}
+.sec-title .dim{color:var(--faint);font-size:12px;font-weight:400}
+
+/* ===== stat cards ===== */
+.cards{display:grid;grid-template-columns:repeat(6,1fr);gap:12px;flex:none}
+@media(max-width:1350px){.cards{grid-template-columns:repeat(3,1fr)}}
+@media(max-width:900px){.cards{grid-template-columns:repeat(2,1fr)}}
+.card{position:relative;border-radius:12px;padding:13px 15px 9px;cursor:pointer;overflow:hidden;
+  background:linear-gradient(160deg,var(--panel2),var(--panel));border:1px solid var(--line);transition:all .15s}
+.card:hover{transform:translateY(-2px);border-color:var(--line2)}
+.card.on{border-color:var(--blue);box-shadow:0 0 0 1px var(--blue),0 8px 22px rgba(61,157,240,.15)}
+.card .lab{font-size:12px;color:var(--sub)}
+.card .num{font-size:30px;font-weight:800;margin:3px 0 1px;font-variant-numeric:tabular-nums;line-height:1.1}
+.card .num small{font-size:13px;font-weight:400;color:var(--sub);margin-left:3px}
+.card .wk{font-size:11.5px;color:var(--blue)}
+.card canvas{position:absolute;right:10px;bottom:8px;opacity:.85}
+.card.c-blue.on{box-shadow:0 0 0 1px var(--blue),0 8px 22px rgba(61,157,240,.2)}
+.card.c-cyan.on{box-shadow:0 0 0 1px var(--cyan),0 8px 22px rgba(34,195,230,.2)}
+.card.c-gold.on{box-shadow:0 0 0 1px var(--gold),0 8px 22px rgba(216,169,78,.2)}
+.card.c-green.on{box-shadow:0 0 0 1px var(--up),0 8px 22px rgba(53,196,125,.2)}
+.card.c-purple.on{box-shadow:0 0 0 1px var(--purple),0 8px 22px rgba(143,111,232,.2)}
+.card.c-red.on{box-shadow:0 0 0 1px var(--down),0 8px 22px rgba(239,83,80,.2)}
+
+/* ===== filter bar ===== */
+.fbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;row-gap:7px;background:var(--panel);
+  border:1px solid var(--line);border-radius:11px;padding:7px 12px;flex:none}
+.fitem{display:flex;align-items:center;gap:9px;font-size:13px}
+.fitem .k{color:var(--txt);font-weight:700;font-size:13.5px;white-space:nowrap}
+select{background:var(--panel2);border:1px solid var(--line2);color:var(--txt);border-radius:7px;
+  padding:6px 10px;font-size:12.5px;outline:none;cursor:pointer}
+input[type=text]{background:var(--panel2);border:1px solid var(--line);color:var(--txt);border-radius:7px;
+  padding:6px 11px;width:150px;font-size:12.5px;outline:none}
+input[type=text]:focus{border-color:var(--blue)}
+.rng{position:relative;width:110px;height:4px;background:var(--line2);border-radius:2px}
+.rng input{position:absolute;left:0;top:-6px;width:100%;-webkit-appearance:none;appearance:none;
+  background:none;pointer-events:none;height:16px;margin:0}
+.rng input::-webkit-slider-thumb{-webkit-appearance:none;appearance:none;width:14px;height:14px;border-radius:50%;
+  background:#fff;border:3px solid var(--blue);cursor:pointer;pointer-events:auto;box-shadow:0 1px 5px rgba(0,0,0,.5)}
+.rng .fill{position:absolute;top:0;height:4px;background:var(--blue);border-radius:2px}
+.rng-val{font-size:11.5px;color:var(--blue);min-width:64px;font-variant-numeric:tabular-nums}
+.apply{margin-left:auto;background:linear-gradient(135deg,#2f7fd6,#3d9df0);border:none;color:#fff;
+  font-size:13px;font-weight:600;padding:8px 20px;border-radius:8px;box-shadow:0 4px 14px rgba(61,157,240,.35)}
+.apply:hover{filter:brightness(1.12)}
+.reset{background:none;border:1px solid var(--line2);color:var(--sub);font-size:12.5px;padding:7px 13px;border-radius:8px}
+.reset:hover{color:var(--txt)}
+
+/* ===== main split ===== */
+.main{flex:1;min-height:0;display:grid;grid-template-columns:minmax(520px,7fr) 5fr;grid-template-rows:minmax(0,1fr);gap:13px}
+@media(max-width:1150px){.main{grid-template-columns:1fr}}
+.main>div:first-child{display:flex;flex-direction:column;gap:11px;min-height:0;min-width:0}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.panel:has(#tbl){flex:1;min-height:0;display:flex;flex-direction:column}
+.panel:has(#tbl)>div:last-child{flex:1;min-height:0;overflow:auto}
+.phead{display:flex;align-items:center;padding:10px 14px;border-bottom:1px solid var(--line);font-size:13px}
+.phead .t{font-weight:700}
+.phead .m{color:var(--faint);font-size:11.5px;margin-left:10px}
+.phead .x{margin-left:auto;color:var(--faint);cursor:pointer;padding:2px 7px;border-radius:6px}
+.phead .x:hover{color:var(--txt);background:var(--panel2)}
+
+table{width:100%;border-collapse:collapse;font-size:12.5px}
+th,td{padding:7.5px 8px;text-align:center;white-space:nowrap}
+th{color:var(--sub);font-weight:600;cursor:pointer;user-select:none;background:#141f38;
+  font-size:11px;border-bottom:1px solid var(--line2);position:sticky;top:0}
+th:hover{color:var(--txt)}
+th .arw{color:var(--blue);font-size:9px}
+tbody tr{cursor:pointer}
+tbody tr:nth-child(even){background:#121b30}
+tbody tr:hover{background:#182446}
+tbody tr.sel{background:rgba(216,169,78,.14);box-shadow:inset 0 0 0 1.5px var(--gold)}
+td.l{text-align:left;max-width:210px;overflow:hidden;text-overflow:ellipsis}
+.tk{font-weight:700}
+.pos{color:var(--up)} .neg{color:var(--down)}
+.mc{color:var(--faint);font-size:10.5px;margin-left:5px}
+.badge{display:inline-block;font-size:10px;padding:2px 8px;border-radius:9px;background:#22375c;color:#9dc2ea}
+.badge.wk{background:#16382a;color:#63d69d;border:1px solid #245641}
+
+/* ===== chart ===== */
+.chartCard{display:flex;flex-direction:column;min-height:0}
+.chartEmpty{display:flex;flex-direction:column;align-items:center;justify-content:center;flex:1;min-height:0;color:var(--faint);gap:10px;font-size:13px}
+.legendRow{display:flex;gap:16px;padding:8px 14px;border-bottom:1px solid var(--line);font-size:11.5px;color:var(--sub);flex:none;flex-wrap:wrap}
+.legendRow .it{display:flex;align-items:center;gap:5px}
+.legendRow .sw{width:14px;height:3px;border-radius:2px}
+.chartEmpty .ico{font-size:38px;opacity:.45}
+.chips{display:flex;gap:6px;flex-wrap:wrap;padding:9px 12px;border-top:1px solid var(--line)}
+.chips span{font-size:10.5px;color:var(--sub);background:var(--panel2);border:1px solid var(--line);padding:3px 9px;border-radius:6px}
+.chips span b{color:var(--txt)}
+
+/* ===== status bar ===== */
+.statusbar{flex:none;height:38px;display:flex;align-items:center;gap:18px;padding:0 20px;
+  background:#0b1322;border-top:1px solid var(--line);color:var(--sub);font-size:12px}
+.statusbar b{color:var(--txt)}
+.statusbar .r{margin-left:auto}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="logo"><b>Quant</b>Screener 量化选股</div>
+  <div class="tabs">
+    <div class="tab on" data-mkt="all">全市场</div>
+    <div class="tab" data-mkt="US">美股 · 罗素1000</div>
+    <div class="tab" data-mkt="HK">港股 · 100亿+</div>
+    <div class="tab">自选池</div>
+  </div>
+  <div class="top-right">
+    <span class="pill"><span class="dot"></span>数据更新时间 <span id="topDate"></span></span>
+    <span class="pill close"><span class="dot"></span>已收盘</span>
+    <div class="ico">🔍</div>
+    <div class="ico">🔔<span class="bdg">3</span></div>
+    <div class="avatar">赵</div>
+  </div>
+</div>
+
+<div class="body">
+  <div class="side">
+    <div class="si"><div class="i"><svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M6 15l4-5 3.5 3.5L19 7"/><path d="M15 7h4v4"/></svg></div>行情</div>
+    <div class="si on"><div class="i"><svg viewBox="0 0 24 24"><path d="M4 6h10"/><circle cx="17" cy="6" r="2.2"/><path d="M4 12h4"/><circle cx="11" cy="12" r="2.2"/><path d="M13 12h7"/><path d="M4 18h13"/><circle cx="20" cy="18" r="2.2"/></svg></div>筛选</div>
+    <div class="si"><div class="i"><svg viewBox="0 0 24 24"><rect x="5" y="4" width="14" height="17" rx="2"/><path d="M9 4.5V3h6v1.5"/><path d="M9 13l2.2 2.2L15.5 11"/></svg></div>自选</div>
+    <div class="si"><div class="i"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><circle cx="12" cy="12" r="4.5"/><circle cx="12" cy="12" r="1" fill="currentColor"/></svg></div>策略</div>
+    <div class="si"><div class="i"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="3.2"/><path d="M12 3v3M12 18v3M3 12h3M18 12h3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M18.4 5.6l-2.1 2.1M7.7 16.3l-2.1 2.1"/></svg></div>设置</div>
+  </div>
+
+  <div class="content">
+    <div class="sec-title">RSI(14) 底背离分日龄筛选 · <span id="mktName">全市场</span> <span class="dim">| 经典背离标准 · 日线信号 + 周线确认 · 复权日线</span></div>
+
+    <div class="cards" id="cards"></div>
+
+    <div class="main">
+      <div>
+      <div class="fbar">
+        <div class="fitem"><span class="k">市场</span><select id="fMarket"><option value="all">全市场</option><option value="US">美股 · 罗素1000</option><option value="HK">港股 · 100亿+</option></select></div>
+        <div class="fitem"><span class="k">信号RSI区间</span>
+          <div class="rng"><div class="fill" id="rsiFill"></div>
+            <input type="range" id="rsiLo" min="0" max="100" value="0">
+            <input type="range" id="rsiHi" min="0" max="100" value="100">
+          </div><span class="rng-val" id="rsiVal">0 – 100</span></div>
+        <div class="fitem"><span class="k">周线确认</span>
+          <select id="fWk"><option value="all">全部</option><option value="wk">仅周线确认</option><option value="d">仅日线</option></select></div>
+        <div class="fitem"><span class="k">搜索</span><input type="text" id="q" placeholder="代码 / 公司名称…"></div>
+        <button class="reset" id="btnReset">重置</button>
+        <button class="apply" id="btnApply">应用筛选</button>
+      </div>
+
+      <div class="panel">
+        <div class="phead"><span class="t" style="color:var(--blue)" id="sharePct">60%</span><span class="t" style="margin-left:auto">股票</span><span class="m" id="cnt" style="margin-left:12px"></span><span class="x" id="tblX" title="重置筛选">✕</span></div>
+        <div style="overflow-x:auto;max-height:640px;overflow-y:auto">
+        <table id="tbl">
+        <thead><tr>
+          <th data-k="ticker">代码</th><th data-k="name" style="text-align:left">名称</th>
+          <th data-k="d2">信号日</th><th data-k="last">信号日收盘</th><th data-k="post">信号后涨跌</th>
+          <th data-k="r1">前低RSI</th><th data-k="r2">信号RSI</th><th data-k="lift">RSI抬升</th>
+          <th data-k="age">日龄</th><th data-k="weekly">周线</th>
+        </tr></thead>
+        <tbody></tbody>
+        </table>
+        </div>
+      </div>
+      </div>
+
+      <div class="panel chartCard">
+        <div class="phead" id="chartHead" style="display:none">
+          <span class="t" id="chT"></span><span class="m" id="chM"></span>
+          <span class="x" id="chX">✕</span>
+        </div>
+        <div class="legendRow">
+          <span class="it" id="btnZoomReset" style="cursor:pointer;color:var(--txt)">⟲ 重置</span>
+          <span class="it"><span class="sw" style="background:var(--cyan)"></span>日K线</span>
+          <span class="it"><span class="sw" style="background:var(--gold)"></span>MA20</span>
+          <span class="it"><span class="sw" style="background:var(--purple)"></span>MA60</span>
+          <span class="it"><span class="sw" style="background:var(--down);width:8px;height:8px;border-radius:50%"></span>背离低点</span>
+          <span class="it" style="margin-left:auto;color:var(--faint)" id="zoomHint">滚轮缩放 · 拖拽平移</span>
+        </div>
+        <div id="chart"></div>
+        <div class="chartEmpty" id="chartEmpty"><div class="ico"><svg viewBox="0 0 24 24" style="width:44px;height:44px;stroke:currentColor;fill:none;stroke-width:1.4;stroke-linecap:round;stroke-linejoin:round"><path d="M3 3v18h18"/><path d="M6 15l4-5 3.5 3.5L19 7"/><path d="M15 7h4v4"/></svg></div><div>点击左侧任意一行，查看该股K线背离结构</div></div>
+        <div class="chips" id="chips" style="display:none">
+          <span>前低 <b id="cD1"></b> · 收盘 <b id="cC1"></b> · RSI <b id="cR1"></b></span>
+          <span>信号低 <b id="cD2"></b> · 收盘 <b id="cC2"></b> · RSI <b id="cR2"></b></span>
+          <span>RSI 抬升 <b id="cLift" style="color:var(--up)"></b></span>
+          <span>信号后 <b id="cPost"></b></span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="statusbar">
+  <span>已扫描 <b id="totalScanned">-</b> 只股票</span>
+  <span>|</span>
+  <span>启用筛选条件 <b id="nFilter">0</b> 项</span>
+  <span class="r">数据时间 <b id="stDate"></b> · 本页面仅为量化技术形态筛选结果，不构成投资建议</span>
+</div>
+
+<script src="data.js"></script>
+<script>
+const D = window.RPT_DATA;
+const AGE_FULL = ['当日（0天 · 未确认）','1天前','2天前','3天前','4天前','5天前（完整回采确认）'];
+const AGE_SHORT = ['当日','1天','2天','3天','4天','5天'];
+const CARD_CLS = ['c-blue','c-cyan','c-gold','c-green','c-purple','c-red'];
+let curAge = 0, sortK = 'lift', sortDir = -1, selTicker = null, chart = null;
+let F = {rsiLo:0, rsiHi:100, wk:'all', q:'', market:'all'};
+
+document.getElementById('topDate').textContent = D.cutoff;
+document.getElementById('totalScanned').textContent = D.totalScanned || D.signals.length + ' signals';
+document.getElementById('stDate').textContent = D.cutoff + ' 15:30';
+
+const byAge = a => D.signals.filter(s => s.age === a && (F.market==='all' || s.market===F.market));
+const counts = [0,1,2,3,4,5].map(a=>byAge(a).length);
+const maxC = Math.max(...counts);
+
+// ===== stat cards with sparkline =====
+const cardsEl = document.getElementById('cards');
+AGE_FULL.forEach((lab,a)=>{
+  const lst = byAge(a);
+  const wk = lst.filter(s=>s.weekly).length;
+  const top = lst.slice().sort((x,y)=>y.lift-x.lift)[0];
+  const div = document.createElement('div');
+  div.className = 'card '+CARD_CLS[a]+(a===0?' on':'');
+  div.innerHTML = `<div class="lab">${lab}</div>
+    <div class="num">${lst.length}<small>只</small></div>
+    <div class="wk">周线确认 ${wk}</div>
+    <canvas width="86" height="34"></canvas>`;
+  div.onclick = ()=>{curAge=a; document.querySelectorAll('.card').forEach(e=>e.classList.remove('on'));
+    div.classList.add('on'); render();};
+  cardsEl.appendChild(div);
+  if(top && D.series[top.ticker]){
+    const se = D.series[top.ticker];
+    const n = 26, off = se.ohlc.length - n;
+    drawMiniCandles(div.querySelector('canvas'),
+      se.ohlc.slice(off), se.vol.slice(off));
+  }
+});
+function drawMiniCandles(cv, ohlc, vols){
+  const ctx = cv.getContext('2d'), W = cv.width, H = cv.height;
+  const VH = 13, PH = H - VH - 4;
+  const lows = ohlc.map(c=>c[2]), highs = ohlc.map(c=>c[3]);
+  const mn = Math.min(...lows), mx = Math.max(...highs), rg = (mx-mn)||1;
+  const vmax = Math.max(...vols, 1);
+  const cw = W / ohlc.length;
+  // volume
+  vols.forEach((v,i)=>{
+    const up = ohlc[i][1] >= ohlc[i][0];
+    ctx.fillStyle = up ? 'rgba(53,196,125,.45)' : 'rgba(239,83,80,.45)';
+    const vh = v/vmax*(VH-2);
+    ctx.fillRect(i*cw+1, H-VH+ (VH-vh), Math.max(1,cw-2), vh);
+  });
+  // candles
+  ohlc.forEach((c,i)=>{
+    const [o,cl,l,h] = c;
+    const up = cl >= o;
+    const col = up ? '#35c47d' : '#ef5350';
+    const x = i*cw + cw/2;
+    const yH = 2 + (mx-h)/rg*(PH-4), yL = 2 + (mx-l)/rg*(PH-4);
+    const yO = 2 + (mx-o)/rg*(PH-4), yC = 2 + (mx-cl)/rg*(PH-4);
+    ctx.strokeStyle = col; ctx.lineWidth = .8;
+    ctx.beginPath(); ctx.moveTo(x, yH); ctx.lineTo(x, yL); ctx.stroke();
+    const bt = Math.min(yO,yC), bh = Math.max(1, Math.abs(yC-yO));
+    ctx.fillStyle = col;
+    ctx.fillRect(x-Math.max(1.2,cw/2-1), bt, Math.max(2.4,cw-2), bh);
+  });
+}
+
+// ===== RSI range slider =====
+const rsiLo = document.getElementById('rsiLo'), rsiHi = document.getElementById('rsiHi');
+function syncRng(){
+  let lo = +rsiLo.value, hi = +rsiHi.value;
+  if(lo > hi-2){ if(document.activeElement===rsiLo) {lo=hi-2; rsiLo.value=lo;} else {hi=lo+2; rsiHi.value=hi;} }
+  document.getElementById('rsiVal').textContent = lo+' – '+hi;
+  const f = document.getElementById('rsiFill');
+  f.style.left = lo+'%'; f.style.width = (hi-lo)+'%';
+  F.rsiLo = lo; F.rsiHi = hi;
+}
+rsiLo.oninput = rsiHi.oninput = syncRng; syncRng();
+
+document.getElementById('fWk').onchange = e=>F.wk = e.target.value;
+document.getElementById('fMarket').onchange = e=>{F.market=e.target.value; updateMktName(); refreshCards(); render();};
+document.querySelectorAll('.tab[data-mkt]').forEach(t=>t.onclick=()=>{
+  document.querySelectorAll('.tab').forEach(x=>x.classList.remove('on'));
+  t.classList.add('on');
+  F.market = t.dataset.mkt;
+  document.getElementById('fMarket').value = F.market;
+  updateMktName(); refreshCards(); render();
+});
+function updateMktName(){
+  const names = {all:'全市场', US:'美股 · 罗素1000', HK:'港股 · 100亿港币+'};
+  document.getElementById('mktName').textContent = names[F.market] || '全市场';
+}
+function refreshCards(){
+  document.querySelectorAll('.card').forEach((e,i)=>{
+    const lst = byAge(i);
+    const wk = lst.filter(s=>s.weekly).length;
+    e.querySelector('.num').innerHTML = lst.length + '<small>只</small>';
+    e.querySelector('.wk').textContent = '周线确认 ' + wk;
+  });
+}
+document.getElementById('q').oninput = e=>F.q = e.target.value.trim().toLowerCase();
+document.getElementById('btnApply').onclick = render;
+document.getElementById('btnReset').onclick = ()=>{
+  rsiLo.value=0; rsiHi.value=100; syncRng();
+  document.getElementById('fWk').value='all'; F.wk='all';
+  document.getElementById('q').value=''; F.q='';
+  render();
+};
+document.getElementById('q').addEventListener('keydown', e=>{if(e.key==='Enter') render();});
+
+// ===== table =====
+const fmtPost = v => `<span class="${v>=0?'pos':'neg'}">${v>=0?'+':''}${v.toFixed(1)}%</span>`;
+const ageTxt = a => AGE_SHORT[a];
+const SORT_NAME = {ticker:'代码',name:'名称',d2:'信号日',last:'最新价',post:'信号后涨跌',r1:'前低RSI',r2:'信号RSI',lift:'RSI抬升',age:'日龄',weekly:'周线'};
+
+function applyFilters(rows){
+  let r = rows.slice();
+  if(F.q) r = r.filter(s => s.ticker.toLowerCase().includes(F.q) || (s.name||'').toLowerCase().includes(F.q));
+  if(F.wk==='wk') r = r.filter(s=>s.weekly);
+  if(F.wk==='d') r = r.filter(s=>!s.weekly);
+  r = r.filter(s=>s.r2>=F.rsiLo && s.r2<=F.rsiHi);
+  return r;
+}
+function nFilters(){
+  let n = (F.rsiLo>0||F.rsiHi<100)?1:0;
+  if(F.wk!=='all') n++; if(F.market!=='all') n++;
+  if(F.q) n++;
+  document.getElementById('nFilter').textContent = n;
+}
+
+function render(){
+  nFilters();
+  let rows = applyFilters(byAge(curAge));
+  rows.sort((x,y)=>{
+    const vx=x[sortK], vy=y[sortK];
+    const c = typeof vx==='string' ? vx.localeCompare(vy) : vx-vy;
+    return c*sortDir;
+  });
+  document.getElementById('cnt').textContent =
+    `${AGE_FULL[curAge]} · ${rows.length} 只 · 按${SORT_NAME[sortK]}${sortDir>0?'升序':'降序'}`;
+  const totAll = D.signals.length;
+  document.getElementById('sharePct').textContent =
+    Math.round(rows.length/totAll*100)+'%';
+  const tb = document.querySelector('#tbl tbody');
+  tb.innerHTML = rows.map(s=>`
+    <tr data-t="${s.ticker}" class="${s.ticker===selTicker?'sel':''}">
+      <td><span class="tk">${s.ticker}</span></td>
+      <td class="l">${s.name||''}${s.mc?`<span class="mc">${s.mc}</span>`:''}</td>
+      <td>${s.d2.slice(5)}</td>
+      <td>${s.c2}</td>
+      <td>${fmtPost(s.post)}</td>
+      <td>${s.r1.toFixed(1)}</td><td>${s.r2.toFixed(1)}</td>
+      <td class="pos">${s.lift.toFixed(1)}</td>
+      <td>${ageTxt(s.age)}</td>
+      <td>${s.weekly?'<span class="badge wk">确认</span>':'<span class="badge">—</span>'}</td>
+    </tr>`).join('');
+  tb.querySelectorAll('tr').forEach(tr=>tr.onclick=()=>showChart(tr.dataset.t));
+  document.querySelectorAll('#tbl th').forEach(th=>{
+    th.innerHTML = th.textContent.replace(/[▲▼]/g,'') + (th.dataset.k===sortK ? `<span class="arw">${sortDir>0?'▲':'▼'}</span>`:'');
+  });
+}
+document.querySelectorAll('#tbl th').forEach(th=>th.addEventListener('click',()=>{
+  const k = th.dataset.k;
+  if(sortK===k) sortDir*=-1; else {sortK=k; sortDir = (k==='ticker'||k==='name'||k==='d2')?1:-1;}
+  render();
+}));
+
+// ===== chart =====
+document.getElementById('chX').onclick = ()=>{
+  selTicker=null;
+  document.getElementById('chartHead').style.display='none';
+  document.getElementById('chips').style.display='none';
+  document.getElementById('chartEmpty').style.display='flex';
+  document.getElementById('chart').style.display='none';
+  render();
+};
+
+function ma(arr, n){
+  return arr.map((_,i)=> i<n-1 ? null : +(arr.slice(i-n+1,i+1).reduce((a,b)=>a+b,0)/n).toFixed(2));
+}
+
+function showChart(t){
+  selTicker = t;
+  const s = D.signals.find(x=>x.ticker===t);
+  const se = D.series[t];
+  document.getElementById('chartEmpty').style.display='none';
+  document.getElementById('chart').style.display='block';
+  document.getElementById('chartHead').style.display='flex';
+  document.getElementById('chips').style.display='flex';
+  document.getElementById('chT').textContent = `${t}  ${s.name||''}`;
+  document.getElementById('chM').innerHTML =
+    `信号日 ${s.d2} · 日龄 ${s.age} 天${s.weekly?' · <b style="color:#63d69d">周线确认</b>':''}`;
+  document.getElementById('cD1').textContent = s.d1;
+  document.getElementById('cC1').textContent = s.c1;
+  document.getElementById('cR1').textContent = s.r1.toFixed(1);
+  document.getElementById('cD2').textContent = s.d2;
+  document.getElementById('cC2').textContent = s.c2;
+  document.getElementById('cR2').textContent = s.r2.toFixed(1);
+  document.getElementById('cLift').textContent = '+'+s.lift.toFixed(1);
+  const cp = document.getElementById('cPost');
+  cp.textContent = (s.post>=0?'+':'')+s.post.toFixed(1)+'%';
+  cp.style.color = s.post>=0 ? 'var(--up)' : 'var(--down)';
+  if(!chart) chart = echarts.init(document.getElementById('chart'));
+
+  const dates = se.dates, ohlc = se.ohlc, closes = se.close, vols = se.vol, rsi = se.rsi;
+  const idx = {}; dates.forEach((d,i)=>idx[d]=i);
+  const i1 = idx[s.d1], i2 = idx[s.d2];
+  const volData = vols.map((v,i)=>({value:v, itemStyle:{color: ohlc[i][1]>=ohlc[i][0] ? 'rgba(53,196,125,.55)' : 'rgba(239,83,80,.55)'}}));
+  const upCol = '#35c47d', dnCol = '#ef5350';
+
+  const option = {
+    animation:false,
+    tooltip:{trigger:'axis', axisPointer:{type:'cross'},
+      backgroundColor:'#141f38', borderColor:'#2a3c66', textStyle:{color:'#dfe7f5'}},
+    axisPointer:{link:[{xAxisIndex:'all'}], label:{backgroundColor:'#2a3c66'}},
+    grid:[
+      {left:56,right:16,top:14,height:'60%'},
+      {left:56,right:16,top:'77%',height:'16%'}
+    ],
+    xAxis:[0,1].map(gi=>({type:'category',data:dates,gridIndex:gi,
+      axisLabel:{show:gi===1,color:'#7f92b6',formatter:v=>v.slice(2),fontSize:10},
+      axisLine:{lineStyle:{color:'#1e2c4a'}},axisTick:{show:false}})),
+    yAxis:[
+      {scale:true,gridIndex:0,axisLabel:{color:'#7f92b6',fontSize:10},splitLine:{lineStyle:{color:'#152240'}}},
+      {gridIndex:0,min:0,max:Math.max(...vols,1)*6,show:false,splitLine:{show:false}},
+      {min:0,max:100,gridIndex:1,axisLabel:{color:'#7f92b6',fontSize:10},splitLine:{lineStyle:{color:'#152240'}}}
+    ],
+    dataZoom:[{type:'inside',xAxisIndex:[0,1]}],
+    series:[
+      {name:'日K线',type:'candlestick',data:ohlc,
+       itemStyle:{color:upCol,color0:dnCol,borderColor:upCol,borderColor0:dnCol},
+       markPoint:{data:[
+         {coord:[i1, ohlc[i1][2]], itemStyle:{color:'#ef5350'}, symbol:'pin', symbolSize:34,
+          label:{show:true, formatter:'前低', color:'#fff', fontSize:9}},
+         {coord:[i2, ohlc[i2][2]], itemStyle:{color:'#ef5350'}, symbol:'pin', symbolSize:34,
+          label:{show:true, formatter:'信号', color:'#fff', fontSize:9}}
+       ]},
+       markLine:{silent:true,symbol:'none',lineStyle:{color:'#ef5350',type:'dotted',width:1.6},
+         data:[[{coord:[i1,closes[i1]]},{coord:[i2,closes[i2]]}]]}},
+      {name:'MA20',type:'line',data:ma(closes,20),symbol:'none',smooth:true,lineStyle:{color:'#d8a94e',width:1}},
+      {name:'MA60',type:'line',data:ma(closes,60),symbol:'none',smooth:true,lineStyle:{color:'#8f6fe8',width:1}},
+      {name:'成交量',type:'bar',xAxisIndex:0,yAxisIndex:1,data:volData,barWidth:'62%'},
+      {name:'RSI(14)',type:'line',xAxisIndex:1,yAxisIndex:2,data:rsi,symbol:'none',
+       lineStyle:{color:'#b06ad4',width:1.3},
+       markLine:{silent:true,symbol:'none',
+         data:[[{coord:[i1,s.r1]},{coord:[i2,s.r2]}]],
+         lineStyle:{color:'#ef5350',type:'dotted',width:1.6}},
+       markArea:{silent:true,itemStyle:{color:'rgba(239,83,80,.13)'},
+         data:[[{coord:[i1,s.r1],label:{show:true,position:'insideTop',formatter:'RSI 抬升',color:'#e5918c',fontSize:9}},
+                {coord:[i2,Math.max(s.r1,s.r2)]}]]}}
+    ],
+    legend:{show:false}
+  };
+  chart.setOption(option, true);
+  fitChart();
+  [80,250,600].forEach(t=>setTimeout(fitChart, t));
+  render();
+}
+function fitChart(){
+  const card = document.querySelector('.chartCard');
+  const el = document.getElementById('chart');
+  const head = document.getElementById('chartHead');
+  const chips = document.getElementById('chips');
+  const legend = card.querySelector('.legendRow');
+  let h = card.clientHeight - legend.offsetHeight - 2;
+  if(head.style.display!=='none') h -= head.offsetHeight;
+  if(chips.style.display!=='none') h -= chips.offsetHeight;
+  el.style.height = Math.max(200, h)+'px';
+  if(chart) chart.resize();
+}
+window.addEventListener('resize', fitChart);
+new ResizeObserver(fitChart).observe(document.querySelector('.chartCard'));
+render();
+const h = location.hash.replace('#','').toUpperCase();
+if(h){
+  const hs = D.signals.find(s=>s.ticker===h);
+  if(hs){
+    curAge = hs.age;
+    document.querySelectorAll('.card').forEach((e,i)=>e.classList.toggle('on', i===curAge));
+    showChart(h);
+  }
+}
+</script>
+</body>
+</html>
