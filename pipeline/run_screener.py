@@ -4,11 +4,12 @@ RSI(14) Bullish Divergence Screener
 Universes: US Russell 1000, HK stocks with market cap >= HK$10B.
 Output:  app/data.js  (consumed by app/index.html)
 """
-import json, time, datetime, sys
+import json, time, datetime, sys, io
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import requests
 import yfinance as yf
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -19,6 +20,14 @@ SWING_W = 5
 MAX_AGE = 5
 HK_MIN_MCAP = 10_000_000_000  # HK$10B
 CACHE_DAYS = 7
+
+BROWSER_UA = ("Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) "
+              "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0 Safari/537.36")
+HEADERS = {"User-Agent": BROWSER_UA, "Accept-Language": "en-US,en;q=0.9"}
+
+# Fallback Russell 1000 list (validated yfinance symbols), used only if Wikipedia fails.
+US_FALLBACK_CSV = ("https://raw.githubusercontent.com/BackupBackupFede/"
+                   "Russell1000_Yfinance_List/main/russell1000_full_enriched.csv")
 
 
 # ----------------------------------------------------------------------------
@@ -41,8 +50,7 @@ def calc_rsi(closes, period=RSI_PERIOD):
     def rsi_value(ag, al):
         if al == 0:
             return 100.0
-        rs = ag / al
-        return 100.0 - 100.0 / (1.0 + rs)
+        return 100.0 - 100.0 / (1.0 + ag / al)
 
     rsi[period] = rsi_value(avg_gain, avg_loss)
     for i in range(period, len(deltas)):
@@ -74,7 +82,6 @@ def detect_divergence(dates, closes, rsi):
             age = n - 1 - i2
             if age > MAX_AGE:
                 continue
-            # crude weekly-timeframe confirmation: momentum turned up vs 10 bars ago
             weekly = bool(rsi[i2] > rsi[max(0, i2 - 10)]) if i2 >= 10 else False
             post = ((closes[-1] - closes[i2]) / closes[i2] * 100) if i2 < n - 1 else 0.0
             signals.append(dict(
@@ -94,33 +101,59 @@ def _yf_symbol(sym):
     return sym.replace(".", "-").strip()
 
 
+def _parse_wiki_table(html):
+    for tbl in pd.read_html(io.StringIO(html)):
+        cols = [str(c).lower() for c in tbl.columns]
+        if any("ticker" in c or "symbol" in c for c in cols) and \
+           any("company" in c for c in cols):
+            tcol = next(i for i, c in enumerate(cols) if "ticker" in c or "symbol" in c)
+            ncol = next(i for i, c in enumerate(cols) if "company" in c)
+            out = []
+            for _, row in tbl.iterrows():
+                sym = _yf_symbol(str(row.iloc[tcol]))
+                name = str(row.iloc[ncol]).split("[")[0].strip()
+                if sym and name and sym.lower() != "nan":
+                    out.append([sym, name, "US"])
+            if out:
+                return out
+    return None
+
+
 def get_us_tickers():
-    print("[US] Fetching Russell 1000 constituents from Wikipedia...", flush=True)
-    urls = [
+    print("[US] Fetching Russell 1000 constituents...", flush=True)
+    wiki_urls = [
         "https://en.wikipedia.org/wiki/List_of_Russell_1000_companies",
         "https://en.wikipedia.org/wiki/Russell_1000_Index",
     ]
-    for url in urls:
+    # 1) Wikipedia via requests with a browser User-Agent (default urllib UA gets 403)
+    for url in wiki_urls:
         try:
-            tables = pd.read_html(url)
-            for tbl in tables:
-                cols = [str(c).lower() for c in tbl.columns]
-                if any("ticker" in c or "symbol" in c for c in cols) and \
-                   any("company" in c for c in cols):
-                    tcol = next(i for i, c in enumerate(cols) if "ticker" in c or "symbol" in c)
-                    ncol = next(i for i, c in enumerate(cols) if "company" in c)
-                    out = []
-                    for _, row in tbl.iterrows():
-                        sym = _yf_symbol(str(row.iloc[tcol]))
-                        name = str(row.iloc[ncol]).split("[")[0].strip()
-                        if sym and name:
-                            out.append([sym, name, "US"])
-                    if out:
-                        print(f"[US] {len(out)} tickers", flush=True)
-                        return out
+            r = requests.get(url, headers=HEADERS, timeout=30)
+            if r.status_code == 200:
+                out = _parse_wiki_table(r.text)
+                if out:
+                    print(f"[US] Wikipedia OK: {len(out)} tickers", flush=True)
+                    return out
+            print(f"[US] {url} -> HTTP {r.status_code}", flush=True)
         except Exception as e:
             print(f"[US] {url} failed: {e}", flush=True)
-    raise RuntimeError("Could not fetch Russell 1000 list from any source")
+
+    # 2) Fallback: validated yfinance Russell 1000 CSV on GitHub
+    try:
+        r = requests.get(US_FALLBACK_CSV, headers=HEADERS, timeout=30)
+        if r.status_code == 200:
+            df = pd.read_csv(io.StringIO(r.text.lstrip("\ufeff")))
+            out = [[_yf_symbol(str(s)), str(n).strip(), "US"]
+                   for n, s in zip(df["Company"], df["Symbol"])]
+            out = [o for o in out if o[0] and o[0].lower() != "nan"]
+            if out:
+                print(f"[US] GitHub fallback OK: {len(out)} tickers", flush=True)
+                return out
+    except Exception as e:
+        print(f"[US] fallback CSV failed: {e}", flush=True)
+
+    print("[US] WARNING: all Russell 1000 sources failed", flush=True)
+    return []
 
 
 def get_hk_tickers(min_mcap=HK_MIN_MCAP):
@@ -144,24 +177,34 @@ def get_hk_tickers(min_mcap=HK_MIN_MCAP):
             pass
         if (i + 1) % 200 == 0:
             print(f"[HK] {i+1}/{len(codes)} scanned, {len(out)} qualified", flush=True)
-        time.sleep(0.05)
+        time.sleep(0.08)
     print(f"[HK] {len(out)} tickers qualified", flush=True)
     return out
 
 
 def build_universe(force=False):
-    """Return universe list, using a cache younger than CACHE_DAYS unless forced."""
+    """Build/cache the universe. A failure in one market never aborts the other."""
     if not force and UNIVERSE_CACHE.exists():
         age = datetime.datetime.now() - datetime.datetime.fromtimestamp(UNIVERSE_CACHE.stat().st_mtime)
         if age.days < CACHE_DAYS:
             universe = json.loads(UNIVERSE_CACHE.read_text())
-            print(f"[UNIVERSE] Loaded cache: {len(universe)} stocks "
-                  f"({age.days}d old)", flush=True)
+            print(f"[UNIVERSE] Cached: {len(universe)} stocks ({age.days}d old)", flush=True)
             return universe
-    us = get_us_tickers()
-    hk = get_hk_tickers()
+
+    us, hk = [], []
+    try:
+        us = get_us_tickers()
+    except Exception as e:
+        print(f"[UNIVERSE] US build error: {e}", flush=True)
+    try:
+        hk = get_hk_tickers()
+    except Exception as e:
+        print(f"[UNIVERSE] HK build error: {e}", flush=True)
+
     universe = us + hk
-    UNIVERSE_CACHE.write_text(json.dumps(universe, ensure_ascii=False, indent=0))
+    if not universe:
+        raise RuntimeError("Universe is empty: all sources failed and no cache exists")
+    UNIVERSE_CACHE.write_text(json.dumps(universe, ensure_ascii=False))
     print(f"[UNIVERSE] Built & cached: {len(us)} US + {len(hk)} HK "
           f"= {len(universe)} stocks", flush=True)
     return universe
