@@ -1,0 +1,44 @@
+name: Weekly Universe Refresh
+
+on:
+  schedule:
+    # Saturday 06:00 UTC (markets closed; rebuild the stock universe once a week)
+    - cron: '0 6 * * 6'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: universe
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Rebuild universe
+        run: python pipeline/run_screener.py --build-universe
+
+      - name: Commit universe
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add pipeline/universe.json
+          if ! git diff --staged --quiet; then
+            TODAY=$(date -u +'%Y-%m-%d')
+            git commit -m "Weekly universe refresh ${TODAY}"
+            git push
+          else
+            echo "No universe changes to commit."
+          fi
