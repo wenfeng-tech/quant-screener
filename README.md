@@ -30,7 +30,7 @@ The screener:
 
 | Market | Universe |
 |---|---|
-| 🇺🇸 United States | Russell 1000 constituents (Wikipedia), S&P 500 fallback |
+| 🇺🇸 United States | Russell 1000 constituents (Wikipedia via browser UA), validated GitHub CSV fallback |
 | 🇭🇰 Hong Kong | Main-board stocks, HKD denominated, market cap ≥ HK$10 billion |
 
 ## 技术栈 / Tech Stack
@@ -40,18 +40,25 @@ The screener:
 - **Automation:** GitHub Actions (cron + manual dispatch)
 - **Hosting:** GitHub Pages (deployed from CI)
 
-## 每日自动更新 / Schedule
+## 自动更新 / Automation
 
-`.github/workflows/daily-update.yml` runs **Mon–Fri at 05:00 UTC**
-(01:00 ET / 13:00 HKT, after both markets close):
+Two GitHub Actions workflows keep the site current while staying within Yahoo
+Finance rate limits:
 
-1. Install dependencies.
-2. Run the screener → regenerate `app/data.js`.
-3. Commit & push the new data (and the cached stock universe).
-4. Deploy `app/` to GitHub Pages.
+**1. Daily screen — `.github/workflows/daily-update.yml`**
+Runs **Mon–Fri at 05:00 UTC** (01:00 ET / 13:00 HKT, after both markets close):
 
-The stock universe is cached in `pipeline/universe.json` and automatically
-refreshed every 7 days (use `--refresh` to force it).
+1. Loads the cached universe (`pipeline/universe.json`).
+2. Batch-downloads 1 year of daily bars via `yf.download` (tickers grouped into
+   chunks, with exponential-backoff retries on HTTP 429) → regenerates `app/data.js`.
+3. Commits & pushes the new data, then deploys `app/` to GitHub Pages.
+
+**2. Weekly universe refresh — `.github/workflows/universe-refresh.yml`**
+Runs **Saturday at 06:00 UTC**: rebuilds the US + HK constituent list (the HK
+scan is request-heavy) and commits the updated `pipeline/universe.json`.
+
+Separating the heavy universe scan from the daily screen prevents the scan from
+consuming the rate-limit budget before prices are fetched.
 
 ## 本地运行 / Run Locally
 
@@ -59,8 +66,9 @@ refreshed every 7 days (use `--refresh` to force it).
 python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
 
-python pipeline/run_screener.py            # use cached universe if fresh
-python pipeline/run_screener.py --refresh  # rebuild US + HK universe
+python pipeline/run_screener.py                     # screen using cached universe
+python pipeline/run_screener.py --build-universe    # only rebuild universe.json
+python pipeline/run_screener.py --refresh           # rebuild universe, then screen
 ```
 
 Then open `app/index.html` in a browser (or serve `app/` with any static server).
@@ -76,7 +84,9 @@ Then open `app/index.html` in a browser (or serve `app/` with any static server)
 ├── pipeline/
 │   ├── run_screener.py     # indicators + universe + screening
 │   └── universe.json       # cached stock universe (generated)
-├── .github/workflows/daily-update.yml
+├── .github/workflows/
+│   ├── daily-update.yml       # weekday screen + Pages deploy
+│   └── universe-refresh.yml   # weekly constituent rebuild
 └── requirements.txt
 ```
 
