@@ -114,13 +114,15 @@ def run_market(market: str) -> dict | None:
     return block
 
 
-def load_existing() -> dict:
+def load_existing_markets() -> dict:
+    """读取既有 data.js 中的各市场数据块（用于跨次运行合并）。"""
     if not DATA_JS.exists():
         return {}
     try:
         text = DATA_JS.read_text(encoding="utf-8")
         payload = text.split("=", 1)[1].strip().rstrip(";")
-        return json.loads(payload)
+        old = json.loads(payload)
+        return old.get("markets") or {}
     except Exception:  # noqa: BLE001
         return {}
 
@@ -131,8 +133,7 @@ def main() -> int:
     args = ap.parse_args()
     markets = ["US", "HK"] if args.market == "all" else [args.market.upper()]
 
-    rpt = load_existing()
-    rpt.setdefault("markets", {})
+    rpt = {"markets": load_existing_markets()}
     updated = False
     for m in markets:
         block = run_market(m)

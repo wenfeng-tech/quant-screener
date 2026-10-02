@@ -57,7 +57,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add app/data.js data/universe_us.csv data/universe_hk.csv
+          git add -A app/data.js data/
           if git diff --cached --quiet; then
             echo "无数据变化，跳过提交"
           else
