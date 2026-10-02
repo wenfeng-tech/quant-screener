@@ -87,9 +87,19 @@ def em_download(market: str, tickers: list[str],
     beg = (datetime.utcnow() - timedelta(days=760)).strftime("%Y%m%d")
     end = datetime.utcnow().strftime("%Y%m%d")
     ok: dict[str, pd.DataFrame] = {}
-    failed: list[str] = []
     jobs = {t: _em_secids(market, t, (exchanges or {}).get(t, ""))
             for t in tickers}
+    # 源探针：CI（海外 IP）上东财常整段 502，先探测 3 只，
+    # 全灭则直接跳过，避免浪费数分钟。
+    probe_n = min(3, len(jobs))
+    if probe_n:
+        probe_ok = sum(1 for t in tickers[:probe_n]
+                       if _em_one(jobs[t], beg, end) is not None)
+        if probe_ok == 0 and len(tickers) > 10:
+            log.warning("  东财探针 %d 只全失败，判定源不可达，跳过 %d 只",
+                        probe_n, len(tickers))
+            return {}, tickers[:]
+    failed: list[str] = []
     with ThreadPoolExecutor(max_workers=EM_THREADS) as ex:
         futs = {ex.submit(_em_one, ids, beg, end): t
                 for t, ids in jobs.items()}

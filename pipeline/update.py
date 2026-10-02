@@ -15,6 +15,7 @@ import logging
 import sys
 from datetime import datetime, timezone
 from pathlib import Path
+from zoneinfo import ZoneInfo
 
 import pandas as pd
 
@@ -33,6 +34,26 @@ MARKET_LABEL = {
     "US": "美股 · 罗素1000",
     "HK": "港股 · 市值≥100亿港元",
 }
+# 当地时区与收盘确认时间（收盘 16:00 + 20 分钟数据落定缓冲）
+MARKET_TZ = {"US": "America/New_York", "HK": "Asia/Hong_Kong"}
+CLOSE_CONFIRM = (16, 20)
+
+
+def drop_incomplete_today(market: str, data: dict[str, pd.DataFrame]) -> None:
+    """当地收盘前运行时，剔除当日未完成的半成品 K 线。
+    仅在最后一根 bar 的日期等于当地今天且现在未到收盘确认点时触发。"""
+    now = datetime.now(ZoneInfo(MARKET_TZ[market]))
+    if (now.hour, now.minute) >= CLOSE_CONFIRM:
+        return
+    today = now.date()
+    dropped = 0
+    for t in list(data):
+        df = data[t]
+        if len(df) and df.index[-1].date() == today:
+            data[t] = df.iloc[:-1]
+            dropped += 1
+    if dropped:
+        log.info("[%s] 当地尚未收盘确认，剔除当日半成品 bar: %d 只", market, dropped)
 
 
 def _round_px(v: float) -> float:
@@ -77,7 +98,16 @@ def run_market(market: str) -> dict | None:
                   MIN_SUCCESS_RATE * 100)
         return None
 
+    drop_incomplete_today(market, data)
     info = uni.set_index("ticker")
+    # 对齐市场截止日：以众数交易日为准，截断个别股票多出的尾盘/脏数据
+    last_days = [df.index[-1] for df in data.values()]
+    if last_days:
+        modal_day = pd.Series(last_days).dt.normalize().mode().iloc[0]
+        for t in list(data):
+            df = data[t]
+            if df.index[-1].normalize() > modal_day:
+                data[t] = df[df.index.normalize() <= modal_day]
     out_signals: list[dict] = []
     series: dict[str, dict] = {}
     cutoff = ""
