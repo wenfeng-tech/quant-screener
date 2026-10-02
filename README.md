@@ -1,100 +1,79 @@
 # QuantScreener · RSI 底背离量化选股
 
-A professional, auto-updating **RSI(14) Bullish Divergence** screener covering the
-**US Russell 1000** and **Hong Kong large-cap stocks (market cap ≥ HK$10B)**.
-Data is refreshed every trading day by GitHub Actions and published as a live website.
+自动扫描 **美股（罗素1000 成分股）** 与 **港股（市值 ≥ 100 亿港元）**，检测
+RSI(14) 经典底背离形态，按信号日龄分桶（0–5 天），并叠加周线级别双重确认。
+每个交易日由 GitHub Actions 自动更新并发布到 GitHub Pages。
 
-## 在线访问 / Live Site
+## 在线访问
 
 👉 **https://wenfeng-tech.github.io/quant-screener/**
 
-## 策略逻辑 / Strategy
+## 股票池
 
-A *bullish RSI divergence* occurs when, near a swing low:
+| 市场 | 范围 | 来源 |
+| --- | --- | --- |
+| 美股 | 罗素1000 当前成分股（约 1020 只） | iShares IWB ETF 官方持仓 CSV |
+| 港股 | 主板/GEM Equity 且总市值 ≥ 100 亿港元（约 400+ 只） | 港交所官方证券名单 × 东方财富行情市值 |
 
-- the price makes a **lower low**, while
-- the RSI(14) makes a **higher low** (selling momentum is weakening).
+股票池每次运行实时刷新；抓取失败时回退到 `data/universe_*.csv` 快照。
 
-The screener:
+## 方法学
 
-1. Computes **Wilder RSI(14)** on ~1 year of daily (adjusted) bars.
-2. Identifies swing lows with a ±5 bar local-minimum filter.
-3. Matches consecutive swing-low pairs where price is lower but RSI is higher.
-4. Buckets hits by **signal age (0–5 trading days)** and flags a simple
-   weekly-timeframe confirmation.
-5. Renders interactive candlestick + volume + RSI charts for every signal.
+**指标**：RSI(14)，Wilder 平滑，基于前复权日线收盘价。
+统一以**收盘价**判定低点（分形、新低、回采均按收盘）。
 
-> Signals older than 5 days are not shown; the universe is re-scanned daily.
+**日线底背离（经典标准）**：
 
-## 覆盖范围 / Coverage
+1. 前低 d1：±5 根 K 线分形确认的摆动低点；
+2. 信号日 d2：收盘价创出新低（`close[d2] < close[d1]`）而 RSI 未创新低
+   （`rsi[d2] ≥ rsi[d1]`，允许持平），d1 与 d2 间隔 ≥ 5 且 ≤ 60 个交易日；
+3. d2 是「当前低点」：收盘价为前 5 日最低，且 d2 之后收盘未再跌破
+   （日龄 0–5 天回采窗口；日龄越大越可靠，5 天为完整回采确认）；
+4. 两侧 RSI 均 ≤ 45（背离发生在偏弱区）。
 
-| Market | Universe |
-|---|---|
-| 🇺🇸 United States | Russell 1000 constituents (Wikipedia via browser UA), validated GitHub CSV fallback |
-| 🇭🇰 Hong Kong | Main-board stocks, HKD denominated, market cap ≥ HK$10 billion |
+**周线双重确认**：周线 RSI(14) 同样出现「收盘新低 + RSI 未创新低」
+（±3 周分形前低，新低在近 8 周内）。
 
-## 技术栈 / Tech Stack
+**数据源**：港股主用东方财富前复权 K 线、yfinance 兜底；美股主用
+yfinance（复权）、东方财富兜底。不同数据源的分红复权口径略有差异，
+个别股票 RSI 小数位可能与其他终端略有出入，属正常现象。
 
-- **Data:** Python 3.11, [yfinance](https://github.com/ranaroussi/yfinance), pandas, NumPy
-- **Frontend:** Vanilla JS, [Apache ECharts](https://echarts.apache.org/), no build step
-- **Automation:** GitHub Actions (cron + manual dispatch)
-- **Hosting:** GitHub Pages (deployed from CI)
+## 自动更新
 
-## 自动更新 / Automation
+`.github/workflows/daily-update.yml` 每个交易日运行两次：
 
-Two GitHub Actions workflows keep the site current while staying within Yahoo
-Finance rate limits:
+| 触发 | 时间 | 更新内容 |
+| --- | --- | --- |
+| cron `48 8 * * 1-5` | 港股收盘后（16:48 HKT） | 港股 |
+| cron `52 21 * * 1-5` | 美股收盘后（美东收盘 + 约 1 小时） | 美股 + 港股 |
+| 手动 workflow_dispatch | 任意 | 可选 all / us / hk |
 
-**1. Daily screen — `.github/workflows/daily-update.yml`**
-Runs **Mon–Fri at 05:00 UTC** (01:00 ET / 13:00 HKT, after both markets close):
+管道每次运行重新拉取股票池与行情，检测信号，重写 `app/data.js` 并自动提交，
+随后将 `app/` 部署到 GitHub Pages。行情下载成功率低于 80% 时放弃本次更新，
+保留上一份可用数据。
 
-1. Loads the cached universe (`pipeline/universe.json`).
-2. Batch-downloads 1 year of daily bars via `yf.download` (tickers grouped into
-   chunks, with exponential-backoff retries on HTTP 429) → regenerates `app/data.js`.
-3. Commits & pushes the new data, then deploys `app/` to GitHub Pages.
-
-**2. Weekly universe refresh — `.github/workflows/universe-refresh.yml`**
-Runs **Saturday at 06:00 UTC**: rebuilds the US + HK constituent list (the HK
-scan is request-heavy) and commits the updated `pipeline/universe.json`.
-
-Separating the heavy universe scan from the daily screen prevents the scan from
-consuming the rate-limit budget before prices are fetched.
-
-## 本地运行 / Run Locally
+## 本地运行
 
 ```bash
-python3 -m venv .venv && source .venv/bin/activate
 pip install -r requirements.txt
-
-python pipeline/run_screener.py                     # screen using cached universe
-python pipeline/run_screener.py --build-universe    # only rebuild universe.json
-python pipeline/run_screener.py --refresh           # rebuild universe, then screen
+python -m pipeline.update --market all    # 或 us / hk
+cd app && python -m http.server 8000      # http://localhost:8000
 ```
 
-Then open `app/index.html` in a browser (or serve `app/` with any static server).
-
-## 项目结构 / Layout
+## 目录结构
 
 ```
-.
-├── app/
-│   ├── index.html          # single-page dashboard
-│   ├── data.js             # generated: cutoff, signals, chart series
-│   └── vendor/echarts.min.js
-├── pipeline/
-│   ├── run_screener.py     # indicators + universe + screening
-│   └── universe.json       # cached stock universe (generated)
-├── .github/workflows/
-│   ├── daily-update.yml       # weekday screen + Pages deploy
-│   └── universe-refresh.yml   # weekly constituent rebuild
-└── requirements.txt
+app/                  站点（index.html + data.js + echarts），由 CI 部署到 Pages
+pipeline/
+  universe.py         股票池构建（IWB 持仓 / 港交所名单 × 东财市值）
+  quotes.py           行情下载（东方财富 + yfinance 双源互备）
+  signals.py          RSI(14) Wilder + 底背离检测 + 周线确认
+  update.py           主入口：生成 app/data.js
+data/                 股票池快照（抓取失败时的兜底）
+.github/workflows/    每日自动更新 + Pages 部署
 ```
 
-## 免责声明 / Disclaimer
+## 免责声明
 
-本项目仅用于量化技术形态的研究与展示，**不构成任何投资建议**。
-数据来源于公开渠道（Yahoo Finance），可能存在延迟、缺失或错误，使用风险自负。
-
-This project is for research and educational purposes only. It is **not investment
-advice**. Data comes from public sources (Yahoo Finance) and may be delayed,
-incomplete, or inaccurate. Use it at your own risk.
+本项目仅为技术面量化形态筛选，不构成任何投资建议。底背离在强下跌趋势中
+可能多次失败，请结合基本面与仓位管理独立决策。

@@ -1,10 +1,17 @@
-name: Daily Stock Screener Update
+name: 每日数据更新
 
 on:
   schedule:
-    # Weekdays 05:00 UTC = 01:00 ET / 13:00 HKT (after both markets close)
-    - cron: '0 5 * * 1-5'
+    # 港股收盘后：16:48 HKT = 08:48 UTC（工作日），只更新港股
+    - cron: '48 8 * * 1-5'
+    # 美股收盘后：21:52 UTC（覆盖美东冬令时收盘 21:00 UTC + 缓冲），更新全部
+    - cron: '52 21 * * 1-5'
   workflow_dispatch:
+    inputs:
+      market:
+        description: '更新范围：all / us / hk'
+        required: false
+        default: 'all'
 
 permissions:
   contents: write
@@ -16,33 +23,46 @@ concurrency:
   cancel-in-progress: false
 
 jobs:
-  build:
+  update:
     runs-on: ubuntu-latest
+    timeout-minutes: 90
     steps:
       - uses: actions/checkout@v4
 
       - uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
-          cache: 'pip'
+          python-version: '3.12'
+          cache: pip
 
-      - name: Install dependencies
+      - name: 安装依赖
         run: pip install -r requirements.txt
 
-      - name: Run screener
-        run: python pipeline/run_screener.py
+      - name: 选择市场
+        id: sel
+        run: |
+          if [ "${{ github.event_name }}" = "workflow_dispatch" ]; then
+            M="${{ github.event.inputs.market || 'all' }}"
+          elif [ "${{ github.event.schedule }}" = "48 8 * * 1-5" ]; then
+            M="hk"
+          else
+            M="all"
+          fi
+          echo "market=$M" >> "$GITHUB_OUTPUT"
+          echo "本次运行市场: $M"
 
-      - name: Commit updated data
+      - name: 运行筛选管道
+        run: python -m pipeline.update --market "${{ steps.sel.outputs.market }}"
+
+      - name: 提交数据更新
         run: |
           git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add app/data.js pipeline/universe.json
-          if ! git diff --staged --quiet; then
-            TODAY=$(date -u +'%Y-%m-%d')
-            git commit -m "Daily update: RSI divergence signals ${TODAY}"
-            git push
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add app/data.js data/universe_us.csv data/universe_hk.csv
+          if git diff --cached --quiet; then
+            echo "无数据变化，跳过提交"
           else
-            echo "No data changes to commit."
+            git commit -m "data: 自动更新 ($(date -u +'%Y-%m-%d %H:%M UTC')) [skip ci]"
+            git push
           fi
 
       - name: Setup Pages
