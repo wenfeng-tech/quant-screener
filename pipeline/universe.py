@@ -166,7 +166,6 @@ def _fetch_yahoo_hk_mcaps() -> pd.DataFrame:
 
     q = EquityQuery("and", [
         EquityQuery("eq", ["region", "hk"]),
-        EquityQuery("eq", ["quoteType", "EQUITY"]),
         EquityQuery("gte", ["intradaymarketcap", HK_MIN_MCAP]),
     ])
     rows: list[dict] = []
@@ -177,7 +176,8 @@ def _fetch_yahoo_hk_mcaps() -> pd.DataFrame:
         quotes = (r or {}).get("quotes") or []
         if not quotes:
             break
-        rows += quotes
+        # quoteType 不能作为查询字段，在结果中过滤非股票（ETF/基金等）
+        rows += [x for x in quotes if x.get("quoteType") == "EQUITY"]
         if len(quotes) < 250 or offset >= 1500:
             break
         offset += 250
@@ -187,7 +187,9 @@ def _fetch_yahoo_hk_mcaps() -> pd.DataFrame:
     df = pd.DataFrame(rows)
     df["code4"] = df["symbol"].astype(str).str.replace(".HK", "", regex=False)
     df = df[df["code4"].str.fullmatch(r"\d{4}")]
-    df["name"] = df.get("shortName", df.get("longName", ""))
+    name = df["shortName"] if "shortName" in df else pd.Series("", index=df.index)
+    name = name.fillna(df["longName"] if "longName" in df else "")
+    df["name"] = name.fillna("").astype(str)
     df["mcap"] = pd.to_numeric(df.get("marketCap"), errors="coerce")
     df["pe"] = pd.to_numeric(df.get("trailingPE"), errors="coerce")
     df = df.dropna(subset=["mcap"])
