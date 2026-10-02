@@ -100,7 +100,8 @@ input[type=text]:focus{border-color:var(--blue)}
 
 /* ===== main split ===== */
 .main{flex:1;min-height:0;display:grid;grid-template-columns:minmax(520px,7fr) 5fr;grid-template-rows:minmax(0,1fr);gap:13px}
-@media(max-width:1150px){.main{grid-template-columns:1fr}}
+@media(max-width:1150px){.main{grid-template-columns:1fr;grid-template-rows:none;overflow-y:auto}
+  .chartCard{min-height:520px;flex:none}}
 .main>div:first-child{display:flex;flex-direction:column;gap:11px;min-height:0;min-width:0}
 .panel{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
 .panel:has(#tbl){flex:1;min-height:0;display:flex;flex-direction:column}

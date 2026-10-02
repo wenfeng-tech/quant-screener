@@ -1,0 +1,33 @@
+name: 部署站点
+
+# 仅前端改动（index.html / vendor）时直接重新部署 Pages，
+# 不必跑完整数据管道。data.js 由每日工作流提交（带 [skip ci]），不会触发本流程。
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'app/index.html'
+      - 'app/vendor/**'
+  workflow_dispatch:
+
+permissions:
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: ./app
+      - id: deployment
+        uses: actions/deploy-pages@v4
