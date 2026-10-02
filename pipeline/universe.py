@@ -158,11 +158,53 @@ def _fetch_eastmoney_mcaps() -> pd.DataFrame:
     return df[["code4", "name", "mcap", "pe"]]
 
 
+def _fetch_yahoo_hk_mcaps() -> pd.DataFrame:
+    """兜底：yfinance 港股筛选器，按市值降序取 region=hk 的 Equity，
+    过滤总市值 >= 100 亿港元。返回 [code4, name, mcap, pe]。"""
+    import yfinance as yf
+    from yfinance import EquityQuery
+
+    q = EquityQuery("and", [
+        EquityQuery("eq", ["region", "hk"]),
+        EquityQuery("eq", ["quoteType", "EQUITY"]),
+        EquityQuery("gte", ["intradaymarketcap", HK_MIN_MCAP]),
+    ])
+    rows: list[dict] = []
+    offset = 0
+    while True:
+        r = yf.screen(q, offset=offset, size=250,
+                      sortField="intradaymarketcap", sortAsc=False)
+        quotes = (r or {}).get("quotes") or []
+        if not quotes:
+            break
+        rows += quotes
+        if len(quotes) < 250 or offset >= 1500:
+            break
+        offset += 250
+        time.sleep(0.5)
+    if not rows:
+        raise ValueError("yfinance 港股筛选为空")
+    df = pd.DataFrame(rows)
+    df["code4"] = df["symbol"].astype(str).str.replace(".HK", "", regex=False)
+    df = df[df["code4"].str.fullmatch(r"\d{4}")]
+    df["name"] = df.get("shortName", df.get("longName", ""))
+    df["mcap"] = pd.to_numeric(df.get("marketCap"), errors="coerce")
+    df["pe"] = pd.to_numeric(df.get("trailingPE"), errors="coerce")
+    df = df.dropna(subset=["mcap"])
+    df = df[df["mcap"] >= HK_MIN_MCAP]
+    return df[["code4", "name", "mcap", "pe"]]
+
+
 def fetch_hk_universe() -> pd.DataFrame:
-    """港股市值 >= 100 亿港元的 Equity。返回 [ticker, name, mcap]。"""
-    hkex = _fetch_hkex_equities()
-    em = _fetch_eastmoney_mcaps()
-    df = hkex.merge(em, on="code4", how="inner")
+    """港股市值 >= 100 亿港元的 Equity。返回 [ticker, name, mcap]。
+    主路径：港交所名单 × 东财市值；兜底：yfinance 港股筛选器。"""
+    try:
+        hkex = _fetch_hkex_equities()
+        em = _fetch_eastmoney_mcaps()
+        df = hkex.merge(em, on="code4", how="inner")
+    except Exception as e:  # noqa: BLE001
+        log.warning("HK 主路径(港交所×东财)失败: %s，改用 yfinance 筛选器", e)
+        df = _fetch_yahoo_hk_mcaps()
     df = df[df["mcap"] >= HK_MIN_MCAP]
     # yfinance/前端代码为 4 位零填充（0700.HK）
     df["ticker"] = df["code4"] + ".HK"

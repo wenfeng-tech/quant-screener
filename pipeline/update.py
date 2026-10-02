@@ -136,7 +136,11 @@ def main() -> int:
     rpt = {"markets": load_existing_markets()}
     updated = False
     for m in markets:
-        block = run_market(m)
+        try:
+            block = run_market(m)
+        except Exception as e:  # noqa: BLE001
+            log.error("[%s] 市场更新失败: %s（保留该市场旧数据）", m, e)
+            block = None
         if block is not None:
             rpt["markets"][m] = block
             updated = True
