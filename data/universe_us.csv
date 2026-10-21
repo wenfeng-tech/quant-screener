@@ -5,12 +5,12 @@ MSFT,Microsoft,NASDAQ
 AMZN,Amazon.Com Inc,NASDAQ
 GOOGL,Alphabet Class A,NASDAQ
 GOOG,Alphabet Class C,NASDAQ
-META,Meta Platforms Class A,NASDAQ
 AVGO,Broadcom Inc,NASDAQ
+META,Meta Platforms Class A,NASDAQ
 TSLA,Tesla Inc,NASDAQ
-LLY,Eli Lilly,NYSE
-BRK-B,Berkshire Hathaway Inc Class B,NYSE
 MU,Micron Technology,NASDAQ
+BRK-B,Berkshire Hathaway Inc Class B,NYSE
+LLY,Eli Lilly,NYSE
 JPM,Jpmorgan Chase & Co,NYSE
 AMD,Advanced Micro Devices,NASDAQ
 XOM,Exxonmobil Holdings Corp,NYSE
@@ -20,18 +20,18 @@ WMT,Walmart,NASDAQ
 ABBV,Abbvie,NYSE
 MA,Mastercard Class A,NYSE
 COST,Costco Wholesale Corp,NASDAQ
-CSCO,Cisco Systems Inc,NASDAQ
-CVX,Chevron,NYSE
 PLTR,Palantir Technologies Class A,NASDAQ
+CSCO,Cisco Systems Inc,NASDAQ
 INTC,Intel Corporation,NASDAQ
+CVX,Chevron,NYSE
 PG,Procter & Gamble,NYSE
-KO,Coca-Cola,NYSE
 UNH,Unitedhealth Group,NYSE
+KO,Coca-Cola,NYSE
 MRK,Merck & Co Inc,NYSE
-BAC,Bank Of America,NYSE
-CAT,Caterpillar Inc,NYSE
 LRCX,Lam Research,NASDAQ
+CAT,Caterpillar Inc,NYSE
 AMAT,Applied Material Inc,NASDAQ
+BAC,Bank Of America,NYSE
 GE,Ge Aerospace,NYSE
 PM,Philip Morris International,NYSE
 HD,Home Depot,NYSE
@@ -40,979 +40,979 @@ PANW,Palo Alto Networks,NASDAQ
 RTX,Rtx,NYSE
 TMO,Thermo Fisher Scientific,NYSE
 GS,Goldman Sachs Group,NYSE
+TXN,Texas Instrument,NASDAQ
 WFC,Wells Fargo,NYSE
-TXN,Texas Instrument Inc,NASDAQ
 GEV,Ge Vernova,NYSE
-AMGN,Amgen Inc,NASDAQ
 LIN,Linde Plc,NASDAQ
+AMGN,Amgen Inc,NASDAQ
 CRWD,Crowdstrike Holdings Class A,NASDAQ
-ORCL,Oracle,NYSE
 IBM,International Business Machines,NYSE
+ORCL,Oracle,NYSE
 KLAC,Kla,NASDAQ
+MRVL,Marvell Technology,NASDAQ
 C,Citigroup,NYSE
 MS,Morgan Stanley,NYSE
-MRVL,Marvell Technology,NASDAQ
-APH,Amphenol Corp Class A,NYSE
-GILD,Gilead Sciences,NASDAQ
-ADI,Analog Devices,NASDAQ
-DIS,Walt Disney,NYSE
-CRM,Salesforce,NYSE
 SNDK,Sandisk,NASDAQ
-VZ,Verizon Communications Inc,NYSE
+APH,Amphenol Corp Class A,NYSE
+CRM,Salesforce,NYSE
+ADI,Analog Devices,NASDAQ
 ANET,Arista Networks,NYSE
+DIS,Walt Disney,NYSE
+GILD,Gilead Sciences,NASDAQ
+VZ,Verizon Communications Inc,NYSE
 QCOM,Qualcomm,NASDAQ
-ABT,Abbott Laboratories,NYSE
 PEP,Pepsico,NASDAQ
+ABT,Abbott Laboratories,NYSE
 COP,Conocophillips,NYSE
-BLK,Blackrock,NYSE
 MCD,Mcdonalds Corp,NYSE
+BLK,Blackrock,NYSE
 UNP,Union Pacific,NYSE
 WELL,Welltower,NYSE
 PFE,Pfizer,NYSE
-NEE,Nextera Energy,NYSE
 AXP,American Express,NYSE
+NEE,Nextera Energy,NYSE
 TJX,Tjx,NYSE
-DE,Deere,NYSE
 T,At&T,NYSE
-ETN,Eaton Plc,NYSE
+DE,Deere,NYSE
 ISRG,Intuitive Surgical,NASDAQ
-SCHW,Charles Schwab,NYSE
+ETN,Eaton Plc,NYSE
 NOW,Servicenow,NYSE
-DHR,Danaher,NYSE
-BA,Boeing,NYSE
+SCHW,Charles Schwab,NYSE
 ACN,Accenture Plc Class A,NYSE
+BA,Boeing,NYSE
+DHR,Danaher,NYSE
 MPC,Marathon Petroleum,NYSE
-UBER,Uber Technologies,NYSE
 DELL,Dell Technologies Inc Class C,NYSE
+UBER,Uber Technologies,NYSE
 PGR,Progressive,NYSE
-VLO,Valero Energy Corp,NYSE
-SPGI,S&P Global,NYSE
 VRTX,Vertex Pharmaceuticals,NASDAQ
-CB,Chubb,NYSE
+SPGI,S&P Global,NYSE
 BKNG,Booking Holdings,NASDAQ
-MO,Altria Group Inc,NYSE
+CB,Chubb,NYSE
 NEM,Newmont,NYSE
-BMY,Bristol Myers Squibb,NYSE
+VLO,Valero Energy Corp,NYSE
+MO,Altria Group Inc,NYSE
 PH,Parker-Hannifin,NYSE
+WDC,Western Digital Corp,NASDAQ
 COF,Capital One Financial Corp,NYSE
-PLD,Prologis Reit,NYSE
+BMY,Bristol Myers Squibb,NYSE
 CVS,Cvs Health,NYSE
 MCK,Mckesson Corp,NYSE
+PLD,Prologis Reit,NYSE
 PSX,Phillips 66,NYSE
-MDT,Medtronic Plc,NYSE
 ADP,Automatic Data Processing Inc,NASDAQ
-WDC,Western Digital Corp,NASDAQ
-LMT,Lockheed Martin Corp,NYSE
+MDT,Medtronic Plc,NYSE
 SBUX,Starbucks Corp,NASDAQ
+LMT,Lockheed Martin Corp,NYSE
 LOW,Lowes Companies Inc,NYSE
 CME,Cme Group Class A,NASDAQ
-SO,Southern,NYSE
-GLW,Corning,NYSE
 SNOW,Snowflake,NYSE
+GLW,Corning,NYSE
 FTNT,Fortinet,NASDAQ
 SYK,Stryker,NYSE
 TT,Trane Technologies Plc,NYSE
+SO,Southern,NYSE
 FCX,Freeport Mcmoran Inc,NYSE
 ADBE,Adobe Inc,NASDAQ
-EQIX,Equinix Reit,NASDAQ
 BNY,Bank Of New York Mellon Corp,NYSE
-DUK,Duke Energy Corp,NYSE
+EQIX,Equinix Reit,NASDAQ
 NET,Cloudflare Class A,NYSE
-PWR,Quanta Services Inc,NYSE
 ELV,Elevance Health Inc,NYSE
-USB,Us Bancorp,NYSE
+DUK,Duke Energy Corp,NYSE
+PWR,Quanta Services Inc,NYSE
 MRSH,Marsh,NYSE
-ICE,Intercontinental Exchange Inc,NYSE
-EMR,Emerson Electric,NYSE
-CSX,Csx,NASDAQ
 SPCX,Space Exploration Technologies Cor,NASDAQ
-GD,General Dynamics Corp,NYSE
+EMR,Emerson Electric,NYSE
+USB,Us Bancorp,NYSE
 CDNS,Cadence Design Systems,NASDAQ
 JCI,Johnson Controls International Plc,NYSE
+ICE,Intercontinental Exchange Inc,NYSE
+CSX,Csx,NASDAQ
 HWM,Howmet Aerospace,NYSE
-PNC,Pnc Financial Services Group,NYSE
-CEG,Constellation Energy Corp,NASDAQ
-WMB,Williams,NYSE
+GD,General Dynamics Corp,NYSE
 INTU,Intuit,NASDAQ
+PNC,Pnc Financial Services Group,NYSE
+WMB,Williams,NYSE
+DDOG,Datadog Inc Class A,NASDAQ
 AMT,American Tower Reit,NYSE
-MMM,3M,NYSE
 MAR,Marriott International Class A,NASDAQ
 SNPS,Synopsys,NASDAQ
 EOG,Eog Resources,NYSE
+CEG,Constellation Energy Corp,NASDAQ
 WM,Waste Management Inc,NYSE
+MMM,3M,NYSE
+MRNA,Moderna,NASDAQ
 SPOT,Spotify Technology,NYSE
 MDLZ,Mondelez International Class A,NASDAQ
-DDOG,Datadog Inc Class A,NASDAQ
 TRV,Travelers Companies,NYSE
-MRNA,Moderna,NASDAQ
 BX,Blackstone,NYSE
 VRT,Vertiv Holdings Class A,NYSE
 CI,Cigna,NYSE
 ITW,Illinois Tool Inc,NYSE
-REGN,Regeneron Pharmaceuticals,NASDAQ
 CMCSA,Comcast Class A,NASDAQ
-TMUS,T Mobile Us Inc,NASDAQ
+REGN,Regeneron Pharmaceuticals,NASDAQ
 HLT,Hilton Worldwide Holdings,NYSE
+TMUS,T Mobile Us Inc,NASDAQ
 MSI,Motorola Solutions Inc,NYSE
 SHW,Sherwin Williams,NYSE
-HOOD,Robinhood Markets Class A,NASDAQ
-CL,Colgate-Palmolive,NYSE
 ROST,Ross Stores Inc,NASDAQ
+CL,Colgate-Palmolive,NYSE
+HOOD,Robinhood Markets Class A,NASDAQ
+HPE,Hewlett Packard Enterprise,NYSE
 SLB,Slb,NYSE
 NSC,Norfolk Southern Corp,NYSE
-GM,General Motors,NYSE
-CMI,Cummins Inc,NYSE
-HPE,Hewlett Packard Enterprise,NYSE
-CTAS,Cintas,NASDAQ
-UPS,United Parcel Service Inc Class B,NYSE
-MCO,Moodys Corp,NYSE
-ORLY,Oreilly Automotive Inc,NASDAQ
 ABNB,Airbnb Class A,NASDAQ
-ECL,Ecolab,NYSE
 DASH,Doordash Class A,NASDAQ
+UPS,United Parcel Service Inc Class B,NYSE
+CTAS,Cintas,NASDAQ
+GM,General Motors,NYSE
+ORLY,Oreilly Automotive Inc,NASDAQ
+CMI,Cummins Inc,NYSE
+MCO,Moodys Corp,NYSE
 RCL,Royal Caribbean Group,NYSE
+ECL,Ecolab,NYSE
 TGT,Target Corp,NYSE
 NOC,Northrop Grumman Corp,NYSE
 AEP,American Electric Power Inc,NASDAQ
+BSX,Boston Scientific,NYSE
 HON,Honeywell International Inc,NASDAQ
 HCA,Hca Healthcare,NYSE
-KMI,Kinder Morgan,NYSE
-BSX,Boston Scientific Corp,NYSE
-SPG,Simon Property Group Reit Inc,NYSE
 APD,Air Products And Chemicals,NYSE
-DLR,Digital Realty Trust Reit,NYSE
-AJG,Arthur J Gallagher,NYSE
-URI,United Rentals,NYSE
-FDX,Fedex Corp,NYSE
 MNST,Monster Beverage,NASDAQ
-COR,Cencora,NYSE
+KMI,Kinder Morgan,NYSE
+SPG,Simon Property Group Reit Inc,NYSE
 APP,Applovin Class A,NASDAQ
+AJG,Arthur J Gallagher,NYSE
 LITE,Lumentum Holdings,NASDAQ
+FDX,Fedex Corp,NYSE
+URI,United Rentals,NYSE
+DLR,Digital Realty Trust Reit,NYSE
 TDG,Transdigm Group,NYSE
+COR,Cencora,NYSE
 ALL,Allstate Corp,NYSE
-TRGP,Targa Resources,NYSE
 BE,Bloom Energy Class A,NYSE
+TRGP,Targa Resources,NYSE
 AON,Aon Plc Class A,NYSE
 LNG,Cheniere Energy,NYSE
-CAH,Cardinal Health,NYSE
 KKR,Kkr And Co Inc,NYSE
-OKE,Oneok,NYSE
-FAST,Fastenal,NASDAQ
-GWW,Ww Grainger Inc,NYSE
-TFC,Truist Financial,NYSE
 MPWR,Monolithic Power Systems Inc,NASDAQ
-PCAR,Paccar Inc,NASDAQ
+CAH,Cardinal Health,NYSE
+FAST,Fastenal,NASDAQ
+OKE,Oneok,NYSE
+NUE,Nucor,NYSE
+KEYS,Keysight Technologies,NYSE
+GWW,Ww Grainger Inc,NYSE
 DVN,Devon Energy,NYSE
 AME,Ametek Inc,NYSE
-KEYS,Keysight Technologies,NYSE
-NUE,Nucor,NYSE
-D,Dominion Energy,NYSE
+TFC,Truist Financial,NYSE
+PCAR,Paccar Inc,NASDAQ
 CRH,Crh Public Limited Plc,NYSE
 BKR,Baker Hughes Class A,NASDAQ
-SRE,Sempra,NYSE
+D,Dominion Energy,NYSE
+NTRA,Natera,NASDAQ
 AFL,Aflac,NYSE
 MET,Metlife,NYSE
-NTRA,Natera,NASDAQ
-HONA,Honeywell Aerospace Inc,NASDAQ
+SRE,Sempra,NYSE
+TER,Teradyne,NASDAQ
 BDX,Becton Dickinson,NYSE
 O,Realty Income Reit,NYSE
+HONA,Honeywell Aerospace Inc,NASDAQ
 AZO,Autozone,NYSE
-TER,Teradyne,NASDAQ
-VST,Vistra,NYSE
-ADSK,Autodesk,NASDAQ
-NU,Nu Holdings Class A,NYSE
-PSA,Public Storage Reit,NYSE
 FIX,Comfort Systems Usa,NYSE
+ADSK,Autodesk,NASDAQ
+VST,Vistra,NYSE
+NU,Nu Holdings Class A,NYSE
 HUM,Humana,NYSE
+PSA,Public Storage Reit,NYSE
 EW,Edwards Lifesciences,NYSE
-ETR,Entergy Corp,NYSE
-A,Agilent Technologies Inc,NYSE
-F,Ford Motor Co,NYSE
 VYLR,Vylor,NYSE
-PYPL,Paypal Holdings,NASDAQ
-WAB,Westinghouse Air Brake Technologie,NYSE
-EBAY,Ebay,NASDAQ
-MSTR,Strategy Inc Class A,NASDAQ
-ROK,Rockwell Automation Inc,NYSE
-XEL,Xcel Energy Inc,NASDAQ
-GRMN,Garmin,NYSE
-AU,Anglogold Ashanti Plc,NYSE
+ETR,Entergy Corp,NYSE
 CIEN,Ciena,NYSE
-VMRK,Vivmark Residential,NYSE
-LHX,L3Harris Technologies,NYSE
-APO,Apollo Global Management,NYSE
-DAL,Delta Air Lines,NYSE
+EBAY,Ebay,NASDAQ
+WAB,Westinghouse Air Brake Technologie,NYSE
+PYPL,Paypal Holdings,NASDAQ
+ROK,Rockwell Automation Inc,NYSE
+A,Agilent Technologies Inc,NYSE
+MSTR,Strategy Inc Class A,NASDAQ
+F,Ford Motor Co,NYSE
 VEEV,Veeva Systems Class A,NYSE
-RSG,Republic Services Inc,NYSE
+GRMN,Garmin,NYSE
+XEL,Xcel Energy Inc,NASDAQ
+APO,Apollo Global Management,NYSE
+VMRK,Vivmark Residential,NYSE
+AU,Anglogold Ashanti Plc,NYSE
+DAL,Delta Air Lines,NYSE
+LHX,L3Harris Technologies,NYSE
 FITB,Fifth Third Bancorp,NYSE
+RSG,Republic Services Inc,NYSE
 OXY,Occidental Petroleum Corp,NYSE
 KDP,Keurig Dr Pepper Inc,NASDAQ
+STT,State Street,NYSE
+ALAB,Astera Labs,NASDAQ
+NKE,Nike Class B,NYSE
+IDXX,Idexx Laboratories,NASDAQ
 EXC,Exelon Corp,NASDAQ
 FERG,Ferguson Enterprises,NYSE
-AMP,Ameriprise Finance Inc,NYSE
-STT,State Street,NYSE
-IDXX,Idexx Laboratories,NASDAQ
-ALAB,Astera Labs,NASDAQ
-VTR,Ventas Reit,NYSE
-NKE,Nike Class B,NYSE
 IQV,Iqvia Holdings Inc,NYSE
 COHR,Coherent,NYSE
+VTR,Ventas Reit,NYSE
+CARR,Carrier Global,NYSE
 AIG,American International Group,NYSE
 WAT,Waters Corp,NYSE
-CARR,Carrier Global,NYSE
+AMP,Ameriprise Finance Inc,NYSE
 FANG,Diamondback Energy,NASDAQ
 NDAQ,Nasdaq Inc,NASDAQ
 YUM,Yum Brands,NYSE
-ED,Consolidated Edison,NYSE
-CVNA,Carvana Class A,NYSE
-XYZ,Block Class A,NYSE
-PRU,Prudential Financial Inc,NYSE
 NTAP,Netapp Inc,NASDAQ
-MSCI,Msci,NYSE
-ILMN,Illumina Inc,NASDAQ
-ADM,Archer Daniels Midland,NYSE
-MCHP,Microchip Technology Inc,NASDAQ
-SYY,Sysco,NYSE
+CVNA,Carvana Class A,NYSE
+ED,Consolidated Edison,NYSE
+XYZ,Block Class A,NYSE
 P,Everpure Inc Class A,NYSE
+ILMN,Illumina Inc,NASDAQ
+MCHP,Microchip Technology Inc,NASDAQ
+MSCI,Msci,NYSE
+PRU,Prudential Financial Inc,NYSE
+SYY,Sysco,NYSE
+ADM,Archer Daniels Midland,NYSE
+WDAY,Workday Class A,NASDAQ
 CBRE,Cbre Group Class A,NYSE
 CMG,Chipotle Mexican Grill,NYSE
-COIN,Coinbase Global Class A,NASDAQ
+TWLO,Twilio Class A,NYSE
 ROP,Roper Technologies,NASDAQ
 TTWO,Take Two Interactive Software,NASDAQ
-WDAY,Workday Class A,NASDAQ
+COIN,Coinbase Global Class A,NASDAQ
 HIG,Hartford Insurance Group,NYSE
 IBKR,Interactive Brokers Group Inc Clas,NASDAQ
-TWLO,Twilio Class A,NYSE
-PAYX,Paychex,NASDAQ
 KVUE,Kenvue,NYSE
-PEG,Public Service Enterprise Group,NYSE
-WEC,Wec Energy Group,NYSE
+PAYX,Paychex,NASDAQ
 KR,Kroger,NYSE
+WEC,Wec Energy Group,NYSE
+PEG,Public Service Enterprise Group,NYSE
 ODFL,Old Dominion Freight Line,NASDAQ
-CCI,Crown Castle Inc,NYSE
-DHI,D R Horton,NYSE
-KMB,Kimberly Clark,NASDAQ
-RMD,Resmed,NYSE
-BIIB,Biogen,NASDAQ
-CNC,Centene Corp,NYSE
 RVMD,Revolution Medicines,NASDAQ
-ACGL,Arch Capital Group,NASDAQ
-IRM,Iron Mountain Inc,NYSE
-ZTS,Zoetis Inc Class A,NYSE
-VMC,Vulcan Materials,NYSE
-CBOE,Cboe Global Markets,Cboe BZX
-FLEX,Flex Ltd,NASDAQ
+RMD,Resmed,NYSE
+KMB,Kimberly Clark,NASDAQ
+CCI,Crown Castle Inc,NYSE
+BIIB,Biogen,NASDAQ
 TEAM,Atlassian Corp Class A,NASDAQ
-EQT,Eqt,NYSE
+CNC,Centene Corp,NYSE
+DHI,D R Horton,NYSE
 CCL,Carnival Corp Ltd,NYSE
-DXCM,Dexcom Inc,NASDAQ
+ZTS,Zoetis Inc Class A,NYSE
+ACGL,Arch Capital Group,NASDAQ
+VMC,Vulcan Materials,NYSE
 EXPE,Expedia Group,NASDAQ
-MTD,Mettler Toledo,NYSE
+IRM,Iron Mountain Inc,NYSE
+EQT,Eqt,NYSE
 STLD,Steel Dynamics Inc,NASDAQ
-EME,Emcor Group,NYSE
+DXCM,Dexcom Inc,NASDAQ
+MTD,Mettler Toledo,NYSE
+CBOE,Cboe Global Markets,Cboe BZX
+RBLX,Roblox Class A,NYSE
 OKTA,Okta Class A,NASDAQ
+FLEX,Flex Ltd,NASDAQ
+EME,Emcor Group,NYSE
 GEHC,Ge Healthcare Technologies,NASDAQ
 MTB,M&T Bank,NYSE
-RBLX,Roblox Class A,NYSE
+ALNY,Alnylam Pharmaceuticals,NASDAQ
 SUNB,Sunbelt Rentals Holdings Inc,NYSE
 UAL,United Airlines Holdings,NASDAQ
 HBAN,Huntington Bancshares Inc,NASDAQ
-ALNY,Alnylam Pharmaceuticals,NASDAQ
-IR,Ingersoll Rand Inc,NYSE
+IR,Ingersoll Rand,NYSE
 NTRS,Northern Trust,NASDAQ
-AXON,Axon Enterprise,NASDAQ
-MLM,Martin Marietta Materials,NYSE
 CTSH,Cognizant Technology Solutions Cla,NASDAQ
-DG,Dollar General Corp,NYSE
+MLM,Martin Marietta Materials,NYSE
 WTW,Willis Towers Watson,NASDAQ
-AEE,Ameren,NYSE
+AXON,Axon Enterprise,NASDAQ
+DG,Dollar General Corp,NYSE
+JBL,Jabil,NYSE
 WSM,Williams Sonoma Inc,NYSE
 EXR,Extra Space Storage Reit,NYSE
-JBL,Jabil,NYSE
-PCG,Pg&E Corp,NYSE
-TDY,Teledyne Technologies Inc,NYSE
-RKLB,Rocket Lab Corp,NASDAQ
+AEE,Ameren,NYSE
 CRDO,Credo Technology Group Holding Ltd,NASDAQ
+PCG,Pg&E Corp,NYSE
 ON,On Semiconductor Corp,NASDAQ
-HAL,Halliburton,NYSE
-RJF,Raymond James,NYSE
-ATO,Atmos Energy,NYSE
-FTI,Technipfmc Plc,NYSE
-OTIS,Otis Worldwide,NYSE
+RKLB,Rocket Lab Corp,NASDAQ
+TDY,Teledyne Technologies,NYSE
 HPQ,Hp Inc,NYSE
+FTI,Technipfmc Plc,NYSE
+HAL,Halliburton,NYSE
 LYV,Live Nation Entertainment,NYSE
-DTE,Dte Energy,NYSE
-WST,West Pharmaceutical Services,NYSE
-CFG,Citizens Financial Group Inc,NYSE
-PPL,Ppl Corp,NYSE
-AWK,American Water Works,NYSE
-CNP,Centerpoint Energy,NYSE
+OTIS,Otis Worldwide,NYSE
+ATO,Atmos Energy,NYSE
 MDB,Mongodb Class A,NASDAQ
-DOV,Dover Corp,NYSE
+RJF,Raymond James,NYSE
+WST,West Pharmaceutical Services,NYSE
+DTE,Dte Energy,NYSE
+CFG,Citizens Financial Group Inc,NYSE
 LH,Labcorp Holdings,NYSE
-CINF,Cincinnati Financial,NASDAQ
-EXPD,Expeditors International Of Washin,NYSE
-DGX,Quest Diagnostics Inc,NYSE
-LPLA,Lpl Financial Holdings,NASDAQ
+AWK,American Water Works,NYSE
 EL,Estee Lauder Inc Class A,NYSE
-ULTA,Ulta Beauty Inc,NASDAQ
-QSR,Restaurants Brands International,NYSE
-CASY,Caseys General Stores Inc,NASDAQ
-VICI,Vici Pptys Inc,NYSE
-CPAY,Corpay,NYSE
-FE,Firstenergy Corp,NYSE
-FFIV,F5,NASDAQ
-FISV,Fiserv Inc,NASDAQ
-RPRX,Royalty Pharma Plc Class A,NASDAQ
-ATI,Ati,NYSE
-HSY,Hershey Foods,NYSE
-ES,Eversource Energy,NYSE
-VRSK,Verisk Analytics,NASDAQ
+EXPD,Expeditors International Of Washin,NYSE
+DOV,Dover,NYSE
+DGX,Quest Diagnostics Inc,NYSE
 ZM,Zoom Communications Class A,NASDAQ
+PPL,Ppl Corp,NYSE
+CINF,Cincinnati Financial,NASDAQ
+CASY,Caseys General Stores Inc,NASDAQ
+CNP,Centerpoint Energy,NYSE
+FFIV,F5,NASDAQ
+ULTA,Ulta Beauty Inc,NASDAQ
+ATI,Ati,NYSE
+CPAY,Corpay,NYSE
+QSR,Restaurants Brands International,NYSE
+LPLA,Lpl Financial Holdings,NASDAQ
+FISV,Fiserv Inc,NASDAQ
+VICI,Vici Pptys Inc,NYSE
+Q,Qnity Electronics,NYSE
+VRSN,Verisign,NASDAQ
+RPRX,Royalty Pharma Plc Class A,NASDAQ
+FE,Firstenergy Corp,NYSE
+VRSK,Verisk Analytics,NASDAQ
+DRI,Darden Restaurants Inc,NYSE
 VLTO,Veralto Corp,NYSE
 CHD,Church And Dwight Inc,NYSE
-DRI,Darden Restaurants Inc,NYSE
-XYL,Xylem Inc,NYSE
-VRSN,Verisign,NASDAQ
 HUBB,Hubbell Inc,NYSE
-TPR,Tapestry,NYSE
-Q,Qnity Electronics,NYSE
+XYL,Xylem Inc,NYSE
+HSY,Hershey Foods,NYSE
 SYF,Synchrony Financial,NYSE
+ES,Eversource Energy,NYSE
 PPG,Ppg Industries,NYSE
+TPR,Tapestry,NYSE
 DLTR,Dollar Tree Inc,NASDAQ
+IFF,International Flavors & Fragrances,NYSE
 CPRT,Copart Inc,NASDAQ
 RF,Regions Financial,NYSE
-IFF,International Flavors & Fragrances,NYSE
-PFG,Principal Financial Group Inc,NASDAQ
 MKL,Markel Group,NYSE
+PFG,Principal Financial Group Inc,NASDAQ
 NVT,Nvent Electric Plc,NYSE
-USFD,Us Foods Holding,NYSE
-ARES,Ares Management Class A,NYSE
 UTHR,United Therapeutics,NASDAQ
-OMC,Omnicom Group Inc,NYSE
-STE,Steris,NYSE
+ARES,Ares Management Class A,NYSE
 ZS,Zscaler,NASDAQ
-VTRS,Viatris,NASDAQ
-RDDT,Reddit Class A,NYSE
-SW,Smurfit Westrock Plc,NYSE
-PHM,Pultegroup,NYSE
-DOW,Dow,NYSE
-EIX,Edison International,NYSE
-THC,Tenet Healthcare Corp,NYSE
-XPO,Xpo,NYSE
-TROW,T Rowe Price Group,NASDAQ
-NRG,Nrg Energy Inc,NYSE
-CMS,Cms Energy,NYSE
-PTC,Ptc,NASDAQ
+USFD,Us Foods Holding,NYSE
+STE,Steris,NYSE
 ENTG,Entegris Inc,NASDAQ
+OMC,Omnicom Group Inc,NYSE
+DOW,Dow,NYSE
+RDDT,Reddit Class A,NYSE
+EIX,Edison International,NYSE
+SW,Smurfit Westrock Plc,NYSE
+THC,Tenet Healthcare Corp,NYSE
 RS,Reliance Steel & Aluminum,NYSE
-AFRM,Affirm Holdings Class A,NASDAQ
-TPL,Texas Pacific Land,NYSE
-INSM,Insmed,NASDAQ
-EXE,Expand Energy,NASDAQ
-NI,Nisource,NYSE
+XPO,Xpo,NYSE
+VTRS,Viatris,NASDAQ
+TROW,T Rowe Price Group,NASDAQ
+PTC,Ptc,NASDAQ
+PHM,Pultegroup,NYSE
+CMS,Cms Energy,NYSE
 BRO,Brown & Brown Inc,NYSE
 PKG,Packaging Corp Of America,NYSE
-KHC,Kraft Heinz,NYSE
+INSM,Insmed,NASDAQ
+EXE,Expand Energy,NASDAQ
+AFRM,Affirm Holdings Class A,NASDAQ
+TPL,Texas Pacific Land,NYSE
 ROKU,Roku Class A,NASDAQ
-RGLD,Royal Gold,NASDAQ
-GH,Guardant Health,NASDAQ
+NRG,Nrg Energy Inc,NYSE
+NI,Nisource,NYSE
 BR,Broadridge Financial Solutions Inc,NYSE
+GH,Guardant Health,NASDAQ
 AMCR,Amcor Plc,NYSE
-STZ,Constellation Brands Class A,NYSE
-FWONK,Liberty Media Series C,NASDAQ
-SBAC,Sba Communications Reit Corp Class,NASDAQ
+RGLD,Royal Gold,NASDAQ
+KHC,Kraft Heinz,NYSE
 OVV,Ovintiv,NYSE
+STZ,Constellation Brands Class A,NYSE
 PR,Permian Resources Class A,NYSE
-DINO,Hf Sinclair,NYSE
-WWD,Woodward,NASDAQ
-EVRG,Evergy,NASDAQ
-GPN,Global Payments Inc,NYSE
+FWONK,Liberty Media Series C,NASDAQ
 CDW,Cdw,NASDAQ
+GPN,Global Payments Inc,NYSE
+WWD,Woodward,NASDAQ
+SBAC,Sba Communications Reit Corp Class,NASDAQ
+DINO,Hf Sinclair,NYSE
 CRWV,Coreweave Class A,NASDAQ
-EFX,Equifax,NYSE
 SNX,Td Synnex,NYSE
+EVRG,Evergy,NASDAQ
 FIS,Fidelity National Information Serv,NYSE
-INCY,Incyte Corp,NASDAQ
 SCCO,Southern Copper Corp,NYSE
+EFX,Equifax,NYSE
+INCY,Incyte Corp,NASDAQ
 KEY,Keycorp,NYSE
-CW,Curtiss Wright,NYSE
+SWKS,Skyworks Solutions,NASDAQ
 SNA,Snap On Inc,NYSE
-GPC,Genuine Parts,NYSE
-CF,Cf Industries Holdings Inc,NYSE
+CW,Curtiss Wright,NYSE
 L,Loews,NYSE
 ZBH,Zimmer Biomet Holdings,NYSE
-SWKS,Skyworks Solutions,NASDAQ
-SOFI,Sofi Technologies,NASDAQ
-LUV,Southwest Airlines,NYSE
-CRS,Carpenter Technology,NYSE
 DT,Dynatrace Inc,NYSE
+CRS,Carpenter Technology,NYSE
+CF,Cf Industries Holdings Inc,NYSE
+MTSI,Macom Technology Solutions,NASDAQ
+GPC,Genuine Parts,NYSE
+SOFI,Sofi Technologies,NASDAQ
+ZBRA,Zebra Technologies Corp Class A,NASDAQ
+LUV,Southwest Airlines,NYSE
+ROIV,Roivant Sciences Ltd,NASDAQ
+NTNX,Nutanix Class A,NASDAQ
+SMCI,Super Micro Computer Inc,NASDAQ
+CPNG,Coupang Class A,NYSE
 IP,International Paper,NYSE
 BBY,Best Buy,NYSE
-MTSI,Macom Technology Solutions,NASDAQ
-DD,Dupont De Nemours,NYSE
-GIS,General Mills Inc,NYSE
-CPNG,Coupang Class A,NYSE
-NTNX,Nutanix Class A,NASDAQ
-ZBRA,Zebra Technologies Corp Class A,NASDAQ
 ITT,Itt Inc,NYSE
-LNT,Alliant Energy Corp,NASDAQ
+DD,Dupont De Nemours,NYSE
 RGA,Reinsurance Group Of America,NYSE
-SMCI,Super Micro Computer Inc,NASDAQ
-FSLR,First Solar,NASDAQ
-FTV,Fortive,NYSE
 HEI-A,Heico Class A,NYSE
-IEX,Idex,NYSE
-EWBC,East West Bancorp,NASDAQ
-RBRK,Rubrik Class A,NYSE
-SSNC,Ss And C Technologies Holdings,NASDAQ
 APA,Apa,NASDAQ
+RBRK,Rubrik Class A,NYSE
+FSLR,First Solar,NASDAQ
+GIS,General Mills Inc,NYSE
+FTV,Fortive,NYSE
+SSNC,Ss And C Technologies Holdings,NASDAQ
+IEX,Idex,NYSE
+LNT,Alliant Energy Corp,NASDAQ
+EWBC,East West Bancorp,NASDAQ
 TSCO,Tractor Supply,NASDAQ
 ESS,Essex Property Trust Reit,NYSE
-ROIV,Roivant Sciences Ltd,NASDAQ
-JBHT,Jb Hunt Transport Services,NASDAQ
-FCNCA,First Citizens Bancshares Class A,NASDAQ
-BAM,Brookfield Asset Management Voting,NYSE
-RVTY,Revvity,NYSE
 NDSN,Nordson,NASDAQ
+BAM,Brookfield Asset Management Voting,NYSE
 BALL,Ball Corp,NYSE
+RVTY,Revvity,NYSE
+FCNCA,First Citizens Bancshares Class A,NASDAQ
+JBHT,Jb Hunt Transport Services,NASDAQ
+HST,Host Hotels & Resorts Reit,NASDAQ
 FTAI,Ftai Aviation,NASDAQ
 CHRW,Ch Robinson Worldwide,NASDAQ
-HST,Host Hotels & Resorts Reit,NASDAQ
 BURL,Burlington Stores,NYSE
-J,Jacobs Solutions Inc,NYSE
-LYB,Lyondellbasell Industries Class A,NYSE
-WCC,Wesco International,NYSE
-WRB,Wr Berkley,NYSE
 FICO,Fair Isaac,NYSE
+WCC,Wesco International,NYSE
+LYB,Lyondellbasell Industries Class A,NYSE
+J,Jacobs Solutions Inc,NYSE
+WRB,Wr Berkley,NYSE
 TLN,Talen Energy,NASDAQ
 CLH,Clean Harbors Inc,NYSE
-MDLN,Medline Class A,NASDAQ
 INVH,Invitation Homes,NYSE
-LEN,Lennar A Class A,NYSE
+MDLN,Medline Class A,NASDAQ
 CDE,Coeur Mining,NYSE
-RBA,Rb Global,NYSE
-FDXF,Fedex Freight Holding Company Inc,NYSE
+SN,Sharkninja,NYSE
 LDOS,Leidos Holdings,NYSE
 RBC,Rbc Bearings,NYSE
-SN,Sharkninja,NYSE
+LEN,Lennar A Class A,NYSE
 EXEL,Exelixis Inc,NASDAQ
-NVR,Nvr,NYSE
 EG,Everest Group,NYSE
-APG,Api Group,NYSE
-EQH,Equitable Holdings,NYSE
-KIM,Kimco Realty Reit Corp,NYSE
-TYL,Tyler Technologies,NYSE
-TOST,Toast Class A,NYSE
-TSN,Tyson Foods Inc Class A,NYSE
-RNR,Renaissancere Holding,NYSE
-CRL,Charles River Laboratories Interna,NYSE
-PFGC,Performance Food Group,NYSE
-CRCL,Circle Internet Group Inc Class A,NYSE
-MAS,Masco,NYSE
-GFL,Gfl Environmental Subordinate Voti,NYSE
 LSCC,Lattice Semiconductor,NASDAQ
-VIK,Viking Holdings Ltd,NYSE
-UNM,Unum,NYSE
-ARMK,Aramark,NYSE
-SUI,Sun Communities Reit Inc,NYSE
-U,Unity Software,NYSE
-SWK,Stanley Black & Decker,NYSE
+APG,Api Group,NYSE
+NVR,Nvr,NYSE
+EQH,Equitable Holdings,NYSE
+TYL,Tyler Technologies,NYSE
+FDXF,Fedex Freight Holding Company Inc,NYSE
+KIM,Kimco Realty Reit Corp,NYSE
+TOST,Toast Class A,NYSE
+GFL,Gfl Environmental Subordinate Voti,NYSE
 DOCU,Docusign,NASDAQ
-TRU,Transunion,NYSE
-MKSI,Mks,NASDAQ
-RL,Ralph Lauren Class A,NYSE
+RNR,Renaissancere Holding,NYSE
+RBA,Rb Global,NYSE
+TSN,Tyson Foods Inc Class A,NYSE
+VIK,Viking Holdings Ltd,NYSE
+MAS,Masco,NYSE
+CRL,Charles River Laboratories Interna,NYSE
+ARMK,Aramark,NYSE
+U,Unity Software,NYSE
 GWRE,Guidewire Software,NYSE
-WPC,W. P. Carey Reit,NYSE
-MEDP,Medpace Holdings,NASDAQ
+CRCL,Circle Internet Group Inc Class A,NYSE
+UNM,Unum,NYSE
+SUI,Sun Communities Reit Inc,NYSE
+MKSI,Mks,NASDAQ
+PFGC,Performance Food Group,NYSE
 HALO,Halozyme Therapeutics,NASDAQ
-BG,Bunge Global Sa,NYSE
-SGI,Somnigroup International,NYSE
-AIZ,Assurant Inc,NYSE
-WY,Weyerhaeuser Reit,NYSE
-JLL,Jones Lang Lasalle,NYSE
+MEDP,Medpace Holdings,NASDAQ
+TRU,Transunion,NYSE
+SWK,Stanley Black & Decker,NYSE
+RL,Ralph Lauren Class A,NYSE
 GDDY,Godaddy Class A,NYSE
-LECO,Lincoln Electric Holdings,NASDAQ
-PNFP,Pinnacle Financial Partners,NYSE
-HAS,Hasbro,NASDAQ
+SGI,Somnigroup International,NYSE
+WPC,W. P. Carey Reit,NYSE
+AIZ,Assurant Inc,NYSE
+JLL,Jones Lang Lasalle,NYSE
 TRMB,Trimble Inc,NASDAQ
-GGG,Graco,NYSE
-OHI,Omega Healthcare Investors Reit,NYSE
+HAS,Hasbro,NASDAQ
 IOT,Samsara Class A,NYSE
+BG,Bunge Global Sa,NYSE
+PNFP,Pinnacle Financial Partners,NYSE
+LECO,Lincoln Electric Holdings,NASDAQ
+WY,Weyerhaeuser Reit,NYSE
 CACI,Caci International Inc Class A,NYSE
 NBIX,Neurocrine Biosciences,NASDAQ
-MAA,Mid America Apartment Communities,NYSE
-ALLE,Allegion Plc,NYSE
 IT,Gartner,NYSE
-NLY,Annaly Capital Management Reit,NYSE
-CSL,Carlisle Companies,NYSE
 TW,Tradeweb Markets Inc Class A,NASDAQ
+GGG,Graco,NYSE
+OHI,Omega Healthcare Investors Reit,NYSE
+MAA,Mid America Apartment Communities,NYSE
 AVY,Avery Dennison Corp,NYSE
+ALLE,Allegion Plc,NYSE
+MLI,Mueller Industries Inc,NYSE
 BJ,Bjs Wholesale Club Holdings,NYSE
+CSL,Carlisle Companies,NYSE
+SMTC,Semtech,NASDAQ
+TXT,Textron Inc,NYSE
 REG,Regency Centers Reit Corp,NASDAQ
-DOC,Healthpeak Properties Inc,NYSE
+MANH,Manhattan Associates,NASDAQ
+SJM,Jm Smucker,NYSE
 HEI,Heico,NYSE
 GL,Globe Life,NYSE
-SJM,Jm Smucker,NYSE
-TXT,Textron Inc,NYSE
-MLI,Mueller Industries Inc,NYSE
-CSGP,Costar Group,NASDAQ
+NLY,Annaly Capital Management Reit,NYSE
 FN,Fabrinet,NYSE
-BMNR,Bitmine Immersion Technologies,NYSE
-BAX,Baxter International,NYSE
-GEN,Gen Digital,NASDAQ
-MANH,Manhattan Associates,NASDAQ
-LAMR,Lamar Advertising Company Clas,NASDAQ
-STRL,Sterling Infrastructure,NASDAQ
 FOXA,Fox Class A,NASDAQ
-SOLV,Solventum,NYSE
+BMNR,Bitmine Immersion Technologies,NYSE
+LAMR,Lamar Advertising Company Clas,NASDAQ
+CSGP,Costar Group,NASDAQ
+BAX,Baxter International,NYSE
+DOC,Healthpeak Properties Inc,NYSE
 CCK,Crown Holdings Inc,NYSE
+STRL,Sterling Infrastructure,NASDAQ
+GEN,Gen Digital,NASDAQ
 RPM,Rpm International Inc,NYSE
-SMTC,Semtech,NASDAQ
+SOLV,Solventum,NYSE
 AKAM,Akamai Technologies Inc,NASDAQ
-EHC,Encompass Health,NYSE
-TOL,Toll Brothers Inc,NYSE
 DTM,Dt Midstream,NYSE
 JAZZ,Jazz Pharmaceuticals Plc,NASDAQ
-BWXT,Bwx Technologies Inc,NYSE
-PNW,Pinnacle West,NYSE
 FIVE,Five Below,NASDAQ
-PEN,Penumbra,NYSE
-AIT,Applied Industrial Technologies,NYSE
+TOL,Toll Brothers Inc,NYSE
+BWXT,Bwx Technologies Inc,NYSE
 DECK,Deckers Outdoor,NYSE
-IONQ,Ionq,NYSE
-RIVN,Rivian Automotive Inc Class A,NASDAQ
-COKE,Coca Cola Consolidated Inc,NASDAQ
+AIT,Applied Industrial Technologies,NYSE
 ASND,Ascendis Pharma,NASDAQ
-CHTR,Charter Communications Class A,NASDAQ
+PEN,Penumbra,NYSE
+PNW,Pinnacle West,NYSE
+EHC,Encompass Health,NYSE
+COKE,Coca Cola Consolidated Inc,NASDAQ
+RIVN,Rivian Automotive Inc Class A,NASDAQ
 BWA,Borgwarner,NYSE
 MTZ,Mastec Inc,NYSE
-NXT,Nextpower Inc,NASDAQ
-MKC,Mccormick & Co Non-Voting,NYSE
-ECHO,Echostar Class A,NASDAQ
-ELS,Equity Lifestyle Properties Reit I,NYSE
-WTRG,Essential Utilities Inc,NYSE
-TECH,Bio Techne,NASDAQ
-ELAN,Elanco Animal Health,NYSE
 XP,Xp Class A Inc,NASDAQ
-LII,Lennox International,NYSE
+IONQ,Ionq,NYSE
+ECHO,Echostar Class A,NASDAQ
+NXT,Nextpower Inc,NASDAQ
+CHTR,Charter Communications Class A,NASDAQ
+MKC,Mccormick & Co Non-Voting,NYSE
+ELS,Equity Lifestyle Properties Reit I,NYSE
+W,Wayfair Class A,NYSE
 HUBS,Hubspot,NYSE
-COO,Cooper,NASDAQ
-TXRH,Texas Roadhouse Inc,NASDAQ
-ALB,Albemarle Corp,NYSE
+TECH,Bio Techne,NASDAQ
+WTRG,Essential Utilities Inc,NYSE
+ELAN,Elanco Animal Health,NYSE
 BBIO,Bridgebio Pharma,NASDAQ
+LII,Lennox International,NYSE
+TXRH,Texas Roadhouse Inc,NASDAQ
+COO,Cooper,NASDAQ
 AR,Antero Resources,NYSE
 GNRC,Generac Holdings,NYSE
-W,Wayfair Class A,NYSE
+ALB,Albemarle Corp,NYSE
 NWSA,News Class A,NASDAQ
-UDR,Udr Reit,NYSE
-JKHY,Jack Henry And Associates Inc,NASDAQ
-GME,Gamestop Class A,NYSE
+ONTO,Onto Innovation,NYSE
 ARW,Arrow Electronics,NYSE
+SITM,Sitime,NASDAQ
+JKHY,Jack Henry And Associates Inc,NASDAQ
 FDS,Factset Research Systems,NYSE
+FLUT,Flutter Entertainment Plc,NYSE
+PINS,Pinterest Class A,NYSE
+UDR,Udr Reit,NYSE
+AA,Alcoa Corp,NYSE
+GME,Gamestop Class A,NYSE
 SCI,Service,NYSE
 AVTR,Avantor,NYSE
-TKO,Tko Group Holdings Inc Class A,NYSE
-ONTO,Onto Innovation,NYSE
-AA,Alcoa Corp,NYSE
-FHN,First Horizon,NYSE
-GLPI,Gaming And Leisure Properties Reit,NASDAQ
-PINS,Pinterest Class A,NYSE
-SEIC,Sei Investments,NASDAQ
-FLUT,Flutter Entertainment Plc,NYSE
-AMH,American Homes Rent Reit Class A,NYSE
-HII,Huntington Ingalls Industries,NYSE
 MOH,Molina Healthcare Inc,NYSE
-AES,Aes,NYSE
-ALLY,Ally Financial Inc,NYSE
-RKT,Rocket Companies Inc Class A,NYSE
-LVS,Las Vegas Sands,NYSE
-CLX,Clorox,NYSE
-SITM,Sitime,NASDAQ
-FNF,Fidelity National Financial Inc,NYSE
-RGEN,Repligen,NASDAQ
+TKO,Tko Group Holdings Inc Class A,NYSE
+SEIC,Sei Investments,NASDAQ
+FHN,First Horizon,NYSE
 ASTS,Ast Spacemobile Class A,NASDAQ
-CORT,Corcept Therapeutics,NASDAQ
-BPOP,Popular,NASDAQ
-WSO,Watsco,NYSE
-BMRN,Biomarin Pharmaceutical,NASDAQ
-EGP,Eastgroup Properties Reit,NYSE
-PAYC,Paycom Software,NYSE
-DCI,Donaldson,NYSE
-RRX,Regal Rexnord,NYSE
-QXO,Qxo Inc,NYSE
-DPZ,Dominos Pizza,NASDAQ
 MTCH,Match Group Inc,NASDAQ
+GLPI,Gaming And Leisure Properties Reit,NASDAQ
+AES,Aes,NYSE
+CORT,Corcept Therapeutics,NASDAQ
+HII,Huntington Ingalls Industries,NYSE
+AMH,American Homes Rent Reit Class A,NYSE
+RRX,Regal Rexnord,NYSE
+ALLY,Ally Financial Inc,NYSE
+RGEN,Repligen,NASDAQ
+LVS,Las Vegas Sands,NYSE
+RKT,Rocket Companies Inc Class A,NYSE
+PAYC,Paycom Software,NYSE
+FNF,Fidelity National Financial Inc,NYSE
+EGP,Eastgroup Properties Reit,NYSE
+BMRN,Biomarin Pharmaceutical,NASDAQ
+BPOP,Popular,NASDAQ
+CLX,Clorox,NYSE
+WSO,Watsco,NYSE
+DCI,Donaldson,NYSE
 RRC,Range Resources,NYSE
-CNH,Cnh Industrial N.V.,NYSE
+DPZ,Dominos Pizza,NASDAQ
+IVZ,Invesco Ltd,NYSE
+TTMI,Ttm Technologies Inc,NASDAQ
+CR,Crane,NYSE
+PODD,Insulet,NASDAQ
 AHR,American Healthcare Reit,NYSE
+RMBS,Rambus,NASDAQ
+ALGN,Align Technology,NASDAQ
 SF,Stifel Financial,NYSE
 ROL,Rollins Inc,NYSE
+CNH,Cnh Industrial N.V.,NYSE
 KNX,Knight-Swift Transportation Holdin,NYSE
-IVZ,Invesco Ltd,NYSE
-CR,Crane,NYSE
-AGNC,Agnc Investment Reit,NASDAQ
-ENSG,Ensign Group,NASDAQ
-PODD,Insulet,NASDAQ
-SSB,Southstate Bank Corp,NYSE
 AFG,American Financial Group,NYSE
-ALGN,Align Technology,NASDAQ
-AMG,Affiliated Managers Group,NYSE
-OGE,Oge Energy,NYSE
 NYT,New York Times Class A,NYSE
-DAR,Darling Ingredients,NYSE
-WTS,Watts Water Technologies Class A,NYSE
-CPT,Camden Property Trust Reit,NYSE
-LULU,Lululemon Athletica,NASDAQ
-HL,Hecla Mining,NYSE
+AMG,Affiliated Managers Group,NYSE
+SSB,Southstate Bank Corp,NYSE
 DOCN,Digitalocean Holdings,NYSE
-TTC,Toro,NYSE
-WTFC,Wintrust Financial,NASDAQ
-TTMI,Ttm Technologies Inc,NASDAQ
-CG,Carlyle Group Inc,NASDAQ
-LFUS,Littelfuse,NASDAQ
-QGEN,Qiagen,NYSE
-APTV,Aptiv Plc,NYSE
+ENSG,Ensign Group,NASDAQ
+LULU,Lululemon Athletica,NASDAQ
+WTS,Watts Water Technologies Class A,NYSE
+AGNC,Agnc Investment Reit,NASDAQ
 SOLS,Solstice Advanced Materials Inc,NASDAQ
-ZION,Zions Bancorporation,NASDAQ
-UHS,Universal Health Services Class B,NYSE
 IREN,Iren,NASDAQ
+CPT,Camden Property Trust Reit,NYSE
+LFUS,Littelfuse,NASDAQ
+CG,Carlyle Group Inc,NASDAQ
+OGE,Oge Energy,NYSE
+TTC,Toro,NYSE
+QGEN,Qiagen,NYSE
+QXO,Qxo Inc,NYSE
+DKNG,Draftkings Class A,NASDAQ
+HL,Hecla Mining,NYSE
+DAR,Darling Ingredients,NYSE
+WTFC,Wintrust Financial,NASDAQ
+APTV,Aptiv Plc,NYSE
+ZION,Zions Bancorporation,NASDAQ
 ALSN,Allison Transmission Holdings,NYSE
-RMBS,Rambus,NASDAQ
-EVR,Evercore Class A,NYSE
-BXP,Bxp,NYSE
+UHS,Universal Health Services Class B,NYSE
+AYI,Acuity,NYSE
+CGNX,Cognex,NASDAQ
 TTEK,Tetra Tech,NASDAQ
 DKS,Dicks Sporting,NYSE
+EVR,Evercore Class A,NYSE
+BXP,Bxp,NYSE
+AEIS,Advanced Energy Industries,NASDAQ
 CFR,Cullen Frost Bankers,NYSE
-FRT,Federal Realty Investment Trust Re,NYSE
-DKNG,Draftkings Class A,NASDAQ
-ORI,Old Republic International,NYSE
-AYI,Acuity,NYSE
 WMS,Advanced Drainage Systems Inc,NYSE
 BAH,Booz Allen Hamilton Holding Class,NYSE
-MUSA,Murphy Usa,NYSE
-CRBG,Corebridge Financial Inc,NYSE
-CGNX,Cognex,NASDAQ
+ORI,Old Republic International,NYSE
+FRT,Federal Realty Investment Trust Re,NYSE
 FLS,Flowserve,NYSE
-OC,Owens Corning,NYSE
-AEIS,Advanced Energy Industries,NASDAQ
-R,Ryder System,NYSE
+CRBG,Corebridge Financial Inc,NYSE
 SANM,Sanmina,NASDAQ
+MUSA,Murphy Usa,NYSE
+R,Ryder System,NYSE
 PRI,Primerica,NYSE
+OC,Owens Corning,NYSE
 SAIA,Saia Inc,NASDAQ
 CUBE,Cubesmart Reit,NYSE
-VOYA,Voya Financial,NYSE
 CHRD,Chord Energy,NASDAQ
-GMED,Globus Medical Class A,NYSE
-CTVA,Corteva,NYSE
-BRX,Brixmor Property Group Reit Inc,NYSE
-HSIC,Henry Schein,NASDAQ
-PNR,Pentair,NYSE
+VOYA,Voya Financial,NYSE
 VNOM,Viper Energy Inc Class A,NASDAQ
-VMI,Valmont Inds,NYSE
-BEN,Franklin Templeton,NYSE
-REXR,Rexford Industrial Realty Reit,NYSE
-GTLB,Gitlab Class A,NASDAQ
 VIAV,Viavi Solutions,NASDAQ
 FORM,Formfactor Inc,NASDAQ
-COLB,Columbia Banking System Inc,NASDAQ
-UGI,Ugi,NYSE
-SPXC,Spx Technologies Inc,NYSE
-MDGL,Madrigal Pharmaceuticals,NASDAQ
+VMI,Valmont Inds,NYSE
+GMED,Globus Medical Class A,NYSE
+BRX,Brixmor Property Group Reit Inc,NYSE
+CTVA,Corteva,NYSE
+PNR,Pentair,NYSE
+GTLB,Gitlab Class A,NASDAQ
+BEN,Franklin Templeton,NYSE
 ESTC,Elastic,NYSE
-KNSL,Kinsale Capital Group Inc,NYSE
-THG,Hanover Insurance Group,NYSE
-IDA,Idacorp,NYSE
-WAL,Western Alliance,NYSE
-ADC,Agree Realty Reit,NYSE
+HSIC,Henry Schein,NASDAQ
+REXR,Rexford Industrial Realty Reit,NYSE
 ESI,Element Solutions Inc,NYSE
+COLB,Columbia Banking System Inc,NASDAQ
+SPXC,Spx Technologies Inc,NYSE
+UGI,Ugi,NYSE
+KNSL,Kinsale Capital Group Inc,NYSE
+FOX,Fox Class B,NASDAQ
+MDGL,Madrigal Pharmaceuticals,NASDAQ
 OSK,Oshkosh Corp,NYSE
-AAL,American Airlines Group,NASDAQ
+THG,Hanover Insurance Group,NYSE
+CLF,Cleveland Cliffs Inc,NYSE
+WAL,Western Alliance,NYSE
 ETSY,Etsy,NYSE
 ATR,Aptargroup,NYSE
-FOX,Fox Class B,NASDAQ
+IDA,Idacorp,NYSE
+ADC,Agree Realty Reit,NYSE
+ONON,On Holding Ag Class A,NYSE
+AAL,American Airlines Group,NASDAQ
+MOD,Modine Manufacturing,NYSE
 CNM,Core & Main Inc Class A,NYSE
 FR,First Industrial Realty Trust,NYSE
 PB,Prosperity Bancshares,NYSE
-NNN,Nnn Reit,NYSE
-MOD,Modine Manufacturing,NYSE
-CHYM,Chime Financial Class A,NASDAQ
-ONON,On Holding Ag Class A,NYSE
-KMX,Carmax Inc,NYSE
-CART,Maplebear,NASDAQ
-RAL,Ralliant,NYSE
-NFG,National Fuel Gas,NYSE
-ACM,Aecom,NYSE
 ARWR,Arrowhead Pharmaceuticals,NASDAQ
+RAL,Ralliant,NYSE
+CHYM,Chime Financial Class A,NASDAQ
+CART,Maplebear,NASDAQ
+NNN,Nnn Reit,NYSE
 DY,Dycom Industries Inc,NYSE
-TIGO,Millicom International Cellular,NASDAQ
-KTOS,Kratos Defense And Security Soluti,NASDAQ
-AXS,Axis Capital Holdings,NYSE
-CBSH,Commerce Bancshares,NASDAQ
-PCTY,Paylocity Holding Corp,NASDAQ
 AVT,Avnet,NASDAQ
+AXS,Axis Capital Holdings,NYSE
+ACM,Aecom,NYSE
+NFG,National Fuel Gas,NYSE
+KMX,Carmax Inc,NYSE
 AXTA,Axalta Coating Systems,NYSE
+PCTY,Paylocity Holding Corp,NASDAQ
 TKR,Timken,NYSE
-KEX,Kirby Corp,NYSE
-AWI,Armstrong World Industries,NYSE
-SSD,Simpson Manufacturing,NYSE
 PCOR,Procore Technologies Inc,NYSE
-EMN,Eastman Chemical,NYSE
-ARE,Alexandria Real Estate Equities Re,NYSE
-HLI,Houlihan Lokey Class A,NYSE
+CBSH,Commerce Bancshares,NASDAQ
 IONS,Ionis Pharmaceuticals,NASDAQ
+KEX,Kirby Corp,NYSE
+KTOS,Kratos Defense And Security Soluti,NASDAQ
+SSD,Simpson Manufacturing,NYSE
+AWI,Armstrong World Industries,NYSE
+EMN,Eastman Chemical,NYSE
+TIGO,Millicom International Cellular,NASDAQ
+ARE,Alexandria Real Estate Equities Re,NYSE
 AM,Antero Midstream,NYSE
-TEM,Tempus Ai Class A,NASDAQ
-CAG,Conagra Brands,NYSE
-LW,Lamb Weston Holdings,NYSE
 S,Sentinelone Inc Class A,NYSE
-LNC,Lincoln National Corp,NYSE
-CLF,Cleveland Cliffs Inc,NYSE
-MTDR,Matador Resources,NYSE
-AXSM,Axsome Therapeutics,NASDAQ
+HLI,Houlihan Lokey Class A,NYSE
+TEM,Tempus Ai Class A,NASDAQ
+LW,Lamb Weston Holdings,NYSE
 HXL,Hexcel,NYSE
 NCLH,Norwegian Cruise Line Holdings,NYSE
+H,Hyatt Hotels Corp Class A,NYSE
+LNC,Lincoln National Corp,NYSE
+MTDR,Matador Resources,NYSE
+CAG,Conagra Brands,NYSE
+AXSM,Axsome Therapeutics,NASDAQ
+STAG,Stag Industrial Reit,NYSE
 NOV,Nov,NYSE
 JHX,James Hardie Industries Plc,NYSE
-STAG,Stag Industrial Reit,NYSE
-H,Hyatt Hotels Corp Class A,NYSE
-MHK,Mohawk Industries,NYSE
+GTES,Gates Industrial Plc,NYSE
 CHE,Chemed,NYSE
 LAD,Lithia Motors Inc Class A,NYSE
-GTES,Gates Industrial Plc,NYSE
 ELF,Elf Beauty,NYSE
 OMF,Onemain Holdings,NYSE
-M,Macys Inc,NYSE
-AOS,A O Smith,NYSE
-MSA,Msa Safety Inc,NYSE
 AUR,Aurora Innovation Class A,NASDAQ
-BIO,Bio Rad Laboratories Class A,NYSE
+EPAM,Epam Systems,NYSE
 MSGS,Madison Square Garden Sports Class,NYSE
+MSA,Msa Safety Inc,NYSE
+AOS,A O Smith,NYSE
+MHK,Mohawk Industries,NYSE
+M,Macys,NYSE
+BIO,Bio Rad Laboratories Class A,NYSE
+LYFT,Lyft Class A,NASDAQ
 DOX,Amdocs,NASDAQ
 FAF,First American Financial Corp,NYSE
-LYFT,Lyft Class A,NASDAQ
-INGR,Ingredion Inc,NYSE
 WEX,Wex,NYSE
-EPAM,Epam Systems,NYSE
-AGCO,Agco,NYSE
 TPG,Tpg Inc Class A,NASDAQ
-JEF,Jefferies Financial Group Inc,NYSE
-SFM,Sprouts Farmers Market Inc,NASDAQ
-HRB,H&R Block Inc,NYSE
+INGR,Ingredion Inc,NYSE
 BRKR,Bruker,NASDAQ
-MOS,Mosaic,NYSE
+AGCO,Agco,NYSE
+VFC,Vf Corp,NYSE
+G,Genpact,NYSE
+AAOI,Applied Optoelectronics,NASDAQ
 TAP,Molson Coors Brewing Class B,NYSE
 DVA,Davita Inc,NYSE
-G,Genpact,NYSE
-FPS,Forgent Power Solutions Class A,NYSE
+SFM,Sprouts Farmers Market Inc,NASDAQ
 LEA,Lear,NYSE
-VFC,Vf Corp,NYSE
-HRL,Hormel Foods Corp,NYSE
-FNB,Fnb Corp,NYSE
-CZR,Caesars Entertainment Inc,NASDAQ
-VNO,Vornado Realty Trust Reit,NYSE
-CROX,Crocs,NASDAQ
-MKTX,Marketaxess Holdings,NASDAQ
-TFX,Teleflex,NYSE
-OWL,Blue Owl Capital Class A,NYSE
-AAOI,Applied Optoelectronics,NASDAQ
-WYNN,Wynn Resorts,NASDAQ
-LSTR,Landstar System,NASDAQ
-GFS,Globalfoundries,NASDAQ
-MTG,Mgic Investment,NYSE
-ST,Sensata Technologies Holding Plc,NYSE
-MP,Mp Materials Class A,NYSE
-HR,Healthcare Realty Trust Inc Class,NYSE
-EXLS,Exlservice Holdings,NASDAQ
-POOL,Pool,NASDAQ
-CAVA,Cava Group,NYSE
-BLDR,Builders Firstsource Inc,NYSE
-ECG,Everus Construction Group,NYSE
 RNG,Ringcentral Class A,NYSE
-RYN,Rayonier Reit,NYSE
-MSM,Msc Industrial Class A,NYSE
-ULS,Ul Solutions Inc Class A,NYSE
+CZR,Caesars Entertainment Inc,NASDAQ
+FPS,Forgent Power Solutions Class A,NYSE
+HRL,Hormel Foods Corp,NYSE
+JEF,Jefferies Financial Group Inc,NYSE
+HRB,H&R Block Inc,NYSE
+OWL,Blue Owl Capital Class A,NYSE
+FNB,Fnb Corp,NYSE
+MKTX,Marketaxess Holdings,NASDAQ
+WYNN,Wynn Resorts,NASDAQ
+ST,Sensata Technologies Holding Plc,NYSE
+TFX,Teleflex,NYSE
+BSY,Bentley Systems Inc Class B,NASDAQ
+CAVA,Cava Group,NYSE
+EXLS,Exlservice Holdings,NASDAQ
+VNO,Vornado Realty Trust Reit,NYSE
+MOS,Mosaic,NYSE
+MTG,Mgic Investment,NYSE
+CROX,Crocs,NASDAQ
+GFS,Globalfoundries,NASDAQ
+LSTR,Landstar System,NASDAQ
+HR,Healthcare Realty Trust Inc Class,NYSE
+ECG,Everus Construction Group,NYSE
 OLLI,Ollies Bargain Outlet Holdings,NASDAQ
 SAIC,Science Applications International,NASDAQ
-BSY,Bentley Systems Inc Class B,NASDAQ
-MBGL,Mobility Global Inc,NYSE
-CRUS,Cirrus Logic,NASDAQ
+RYN,Rayonier Reit,NYSE
 WFRD,Weatherford International Plc,NASDAQ
-LKQ,Lkq Corp,NASDAQ
-GXO,Gxo Logistics,NYSE
+MSM,Msc Industrial Class A,NYSE
+ULS,Ul Solutions Inc Class A,NYSE
+MP,Mp Materials Class A,NYSE
+CRUS,Cirrus Logic,NASDAQ
+POOL,Pool,NASDAQ
 AS,Amer Sports Inc,NYSE
+GXO,Gxo Logistics,NYSE
+BLDR,Builders Firstsource Inc,NYSE
 WH,Wyndham Hotels Resorts,NYSE
-MTN,Vail Resorts,NYSE
+MBGL,Mobility Global Inc,NYSE
 DBX,Dropbox Inc Class A,NASDAQ
-DUOL,Duolingo Class A,NASDAQ
 GAP,Gap,NYSE
-EXP,Eagle Materials Inc,NYSE
+MTN,Vail Resorts,NYSE
+DUOL,Duolingo Class A,NASDAQ
 CHDN,Churchill Downs,NASDAQ
+LKQ,Lkq Corp,NASDAQ
+EXP,Eagle Materials Inc,NYSE
 MGM,Mgm Resorts International,NYSE
+PATH,Uipath Inc Class A,NYSE
 AMKR,Amkor Technology,NASDAQ
 PRMB,Primo Brands Class A Corp,NYSE
 CE,Celanese Corp,NYSE
 RLI,Rli Corp,NYSE
-PATH,Uipath Inc Class A,NYSE
 NEU,Newmarket,NYSE
-WTM,White Mountains Insurance Group,NYSE
-UHAL-B,U Haul Non Voting Series N,NYSE
-TTD,Trade Desk Class A,NASDAQ
 AAON,Aaon,NASDAQ
-Z,Zillow Group Class C,NASDAQ
+WTM,White Mountains Insurance Group,NYSE
+TTD,Trade Desk Class A,NASDAQ
 SON,Sonoco Products,NYSE
-SHC,Sotera Health Company,NASDAQ
-MAT,Mattel Inc,NASDAQ
-SARO,Standardaero,NYSE
-CHWY,Chewy Inc Class A,NYSE
-OZK,Bank Ozk,NASDAQ
-RITM,Rithm Capital,NYSE
 BROS,Dutch Bros Class A,NYSE
-VIRT,Virtu Financial Inc Class A,NYSE
-FND,Floor Decor Holdings Class A,NYSE
-KBR,Kbr Inc,NYSE
-SIRI,Siriusxm Holdings,NASDAQ
-POWL,Powell Industries Inc,NASDAQ
-VICR,Vicor,NASDAQ
-TREX,Trex,NYSE
-APPF,Appfolio Class A,NASDAQ
-NXST,Nexstar Media Group Inc,NASDAQ
-MIDD,Middleby,NASDAQ
-CELH,Celsius Holdings,NASDAQ
-AVAV,Aerovironment,NASDAQ
-FBIN,Fortune Brands Innovations,NYSE
-CUZ,Cousins Properties Reit Inc,NYSE
-VSNT,Versant Media Group Inc Class A,NASDAQ
+Z,Zillow Group Class C,NASDAQ
+UHAL-B,U Haul Non Voting Series N,NYSE
+SHC,Sotera Health Company,NASDAQ
+SARO,Standardaero,NYSE
 APLD,Applied Digital,NASDAQ
-RYAN,Ryan Specialty Holdings Class A,NYSE
+CELH,Celsius Holdings,NASDAQ
+MAT,Mattel Inc,NASDAQ
+KBR,Kbr Inc,NYSE
+VIRT,Virtu Financial Inc Class A,NYSE
+CHWY,Chewy Inc Class A,NYSE
+TREX,Trex,NYSE
+POWL,Powell Industries Inc,NASDAQ
+OZK,Bank Ozk,NASDAQ
+SIRI,Siriusxm Holdings,NASDAQ
+RITM,Rithm Capital,NYSE
+VICR,Vicor,NASDAQ
+NXST,Nexstar Media Group Inc,NASDAQ
+FND,Floor Decor Holdings Class A,NYSE
+APPF,Appfolio Class A,NASDAQ
+MIDD,Middleby,NASDAQ
+FBIN,Fortune Brands Innovations,NYSE
 FIG,Figma Class A,NYSE
-VNT,Vontier,NYSE
+RYAN,Ryan Specialty Holdings Class A,NYSE
+VSNT,Versant Media Group Inc Class A,NASDAQ
 LLYVK,Liberty Live Holdings Inc Series C,NASDAQ
 LPX,Louisiana Pacific,NYSE
+CUZ,Cousins Properties Reit Inc,NYSE
+VNT,Vontier,NYSE
+AVAV,Aerovironment,NASDAQ
 GNTX,Gentex,NASDAQ
+WULF,Terawulf,NASDAQ
+ACI,Albertsons Company Class A,NYSE
 IESC,Ies Inc,NASDAQ
 SITE,Siteone Landscape Supply Inc,NYSE
-ACI,Albertsons Company Class A,NYSE
-STWD,Starwood Property Trust Reit Inc,NYSE
-FCN,Fti Consulting,NYSE
 GSAT,Globalstar Voting,NASDAQ
-JBS,Jbs N V Nv Class A,NYSE
+FCN,Fti Consulting,NYSE
 NWS,News Class B,NASDAQ
-WULF,Terawulf,NASDAQ
-CCC,Ccc Intelligent Solutions Holdings,NASDAQ
+JBS,Jbs N V Nv Class A,NYSE
 IRDM,Iridium Communications,NASDAQ
-SLM,Slm Corp,NASDAQ
-BC,Brunswick Corp,NYSE
-VVV,Valvoline,NYSE
+CCC,Ccc Intelligent Solutions Holdings,NASDAQ
 LOPE,Grand Canyon Education Inc,NASDAQ
-EPR,Epr Properties Reit,NYSE
-PVH,Pvh,NYSE
-ENPH,Enphase Energy,NASDAQ
 DOCS,Doximity Class A,NYSE
-BBWI,Bath And Body Works,NYSE
-ALK,Alaska Air Group Inc,NYSE
-KRC,Kilroy Realty Reit,NYSE
-MORN,Morningstar,NASDAQ
-AN,Autonation,NYSE
-COLD,Americold Realty Inc Trust,NYSE
-MDU,Mdu Resources Group,NYSE
-PLNT,Planet Fitness Inc Class A,NYSE
-OKLO,Oklo Class A,NYSE
-PRIM,Primoris Services,NYSE
+STWD,Starwood Property Trust Reit Inc,NYSE
 ALGM,Allegro Microsystems Inc,NASDAQ
-CPB,Campbell Soup,NASDAQ
-BF-B,Brown Forman Class B,NYSE
-ADT,Adt Inc,NYSE
-FIGR,Figure Technology Solutions Class,NASDAQ
+BC,Brunswick Corp,NYSE
+SLM,Slm Corp,NASDAQ
+PVH,Pvh,NYSE
+PLNT,Planet Fitness Inc Class A,NYSE
+ENPH,Enphase Energy,NASDAQ
+VVV,Valvoline,NYSE
+MORN,Morningstar,NASDAQ
+PRIM,Primoris Services,NYSE
+EPR,Epr Properties Reit,NYSE
+BBWI,Bath And Body Works,NYSE
+AN,Autonation,NYSE
+MDU,Mdu Resources Group,NYSE
+COLD,Americold Realty Inc Trust,NYSE
+KRC,Kilroy Realty Reit,NYSE
+ALK,Alaska Air Group Inc,NYSE
+OKLO,Oklo Class A,NYSE
 BEPC,Brookfield Renewable Subordinate V,NYSE
-NVST,Envista Holdings,NYSE
-PAG,Penske Automotive Group Voting Inc,NYSE
-PL,Planet Labs Class A,NYSE
-CAI,Caris Life Sciences,NASDAQ
-TNL,Travel Leisure,NYSE
 DLB,Dolby Laboratories Class A,NYSE
-ESAB,Esab Corp,NYSE
-BFAM,Bright Horizons Family Solutions,NYSE
-BILL,Bill Holdings,NYSE
+PAG,Penske Automotive Group Voting Inc,NYSE
+TNL,Travel Leisure,NYSE
+BF-B,Brown Forman Class B,NYSE
+CPB,Campbell Soup,NASDAQ
+CAI,Caris Life Sciences,NASDAQ
+PL,Planet Labs Class A,NYSE
+NVST,Envista Holdings,NYSE
+ADT,Adt Inc,NYSE
 WING,Wingstop,NASDAQ
+BILL,Bill Holdings,NYSE
+ESAB,Esab Corp,NYSE
 OGN,Organon,NYSE
-THO,Thor Industries,NYSE
+FIGR,Figure Technology Solutions Class,NASDAQ
+BFAM,Bright Horizons Family Solutions,NYSE
 BYD,Boyd Gaming,NYSE
-CWEN,Clearway Energy Inc Class C,NYSE
-AUGO,Aura Minerals Inc,NASDAQ
-MRP,Millrose Properties Inc Class A,NYSE
-RHI,Robert Half,NYSE
 OLED,Universal Display Corp,NASDAQ
-LAZ,Lazard,NYSE
-YETI,Yeti Holdings,NYSE
-HLNE,Hamilton Lane Class A,NASDAQ
+AUGO,Aura Minerals Inc,NASDAQ
+CWEN,Clearway Energy Inc Class C,NYSE
 SLGN,Silgan Holdings,NYSE
-FRHC,Freedom Holding Corp,NASDAQ
+THO,Thor Industries,NYSE
+RHI,Robert Half,NYSE
+MRP,Millrose Properties Inc Class A,NYSE
+LAZ,Lazard,NYSE
+HLNE,Hamilton Lane Class A,NASDAQ
+YETI,Yeti Holdings,NYSE
 FHB,First Hawaiian,NASDAQ
 POST,Post Holdings,NYSE
 FRPT,Freshpet,NASDAQ
+FRHC,Freedom Holding Corp,NASDAQ
+KD,Kyndryl Holdings,NYSE
 VKTX,Viking Therapeutics,NASDAQ
 AMTM,Amentum Holdings,NYSE
-KD,Kyndryl Holdings,NYSE
-GLXY,Galaxy Digital Inc Class A,NASDAQ
 PEGA,Pegasystems,NASDAQ
+GLXY,Galaxy Digital Inc Class A,NASDAQ
 AGO,Assured Guaranty Ltd,NYSE
 CHH,Choice Hotels International,NYSE
 BHF,Brighthouse Financial,NASDAQ
 WSC,Willscot Holdings Class A,NASDAQ
 DRS,Leonardo Drs Inc,NASDAQ
 LOAR,Loar Holdings,NYSE
-GPK,Graphic Packaging Holding,NYSE
 UI,Ubiquiti,NYSE
+GPK,Graphic Packaging Holding,NYSE
 PSN,Parsons Corp,NYSE
 PPLI,People,NASDAQ
-SMG,Scotts Miracle Gro,NYSE
-KRMN,Karman Holdings Inc,NYSE
 KVYO,Klaviyo Series A,NYSE
+SMG,Scotts Miracle Gro,NYSE
 LINE,Lineage,NASDAQ
 HAYW,Hayward Holdings,NYSE
 BOKF,Bok Financial Corp,NASDAQ
-HHH,Howard Hughes Holdings Inc,NYSE
-EEFT,Euronet Worldwide Inc,NASDAQ
+KRMN,Karman Holdings Inc,NYSE
 FOUR,Shift4 Payments Class A,NYSE
-ALM,Almonty Industries,NASDAQ
+EEFT,Euronet Worldwide Inc,NASDAQ
+HHH,Howard Hughes Holdings Inc,NYSE
 JAN,Janus Living Inc Class A,NYSE
 FWONA,Liberty Media Series A,NASDAQ
 WLK,Westlake Corp,NYSE
 CACC,Credit Acceptance Corp,NASDAQ
 DDS,Dillards Class A,NYSE
 QS,Quantumscape Class A,NASDAQ
+ALM,Almonty Industries,NASDAQ
 LLYVA,Liberty Live Holdings Inc Series A,NASDAQ
 CAR,Avis Budget Group Inc,NASDAQ
+SMMT,Summit Therapeutics,NASDAQ
+IPGP,Ipg Photonics Corp,NASDAQ
 OLN,Olin Corp,NYSE
 BIRK,Birkenstock Holding Plc,NYSE
-IPGP,Ipg Photonics Corp,NASDAQ
-WHR,Whirlpool,NYSE
 WU,Western Union,NYSE
-SMMT,Summit Therapeutics,NASDAQ
 MFP,Midera Food Processing Inc,NASDAQ
+WHR,Whirlpool,NYSE
 INIO,Innio N V Nv,NASDAQ
-MPT,Medical Properties Trust Reit,NYSE
-SNDR,Schneider National Class B,NYSE
 BF-A,Brown Forman Class A,NYSE
+SNDR,Schneider National Class B,NYSE
+MPT,Medical Properties Trust Reit,NYSE
 LBTYA,Liberty Global Ltd Class A,NASDAQ
-REYN,Reynolds Consumer Products Inc,NASDAQ
 COLM,Columbia Sportswear,NASDAQ
+REYN,Reynolds Consumer Products Inc,NASDAQ
 INGM,Ingram Micro Holding,NYSE
-PPC,Pilgrims Pride Corp,NASDAQ
 ZG,Zillow Group Class A,NASDAQ
-SEB,Seaboard,Nyse Mkt Llc
 SAIL,Sailpoint,NASDAQ
+PPC,Pilgrims Pride Corp,NASDAQ
+SEB,Seaboard,Nyse Mkt Llc
 LBTYK,Liberty Global Ltd Class C,NASDAQ
 TFSL,Tfs Financial Corp,NASDAQ
 QNT,Quantinuum Inc Class A,NASDAQ
 MWH,Solv Energy Class A Inc,NASDAQ
 NIQ,Niq Global Intelligence Plc,NYSE
-SFD,Smithfield Foods,NASDAQ
 CNA,Cna Financial Corp,NYSE
+SFD,Smithfield Foods,NASDAQ
 DPC,Dpc Holdings Plc,NYSE
-FRVO,Fervo Energy Class A,NASDAQ
 JMKE,Jersey Mikes Subs Inc Class A,NYSE
+FRVO,Fervo Energy Class A,NASDAQ
 CBC,Central Bancompany Class A,NASDAQ
 LEN-B,Lennar Class B,NYSE
 FRMI,Fermi Inc,NASDAQ
